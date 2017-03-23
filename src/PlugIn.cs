@@ -6,6 +6,7 @@ using Landis.Core;
 using Landis.SpatialModeling;
 using System.Collections.Generic;
 using System.IO;
+using Landis.Library.Metadata;
 using System;
 
 namespace Landis.Extension.BaseFire
@@ -20,8 +21,8 @@ namespace Landis.Extension.BaseFire
         public static readonly string ExtensionName = "Base Fire";
 
         private string mapNameTemplate;
-        private StreamWriter log;
-        private StreamWriter summaryLog;
+        public static MetadataTable<SummaryLog> summaryLog;
+        public static MetadataTable<EventsLog> eventLog;
         private int[] summaryFireRegionEventCount;
         private int summaryTotalSites;
         private int summaryEventCount;
@@ -67,24 +68,13 @@ namespace Landis.Extension.BaseFire
             summaryFireRegionEventCount = new int[FireRegions.Dataset.Count];
 
             Event.Initialize(parameters.FireDamages);
-
-            PlugIn.ModelCore.UI.WriteLine("   Opening Fire log file \"{0}\" ...", parameters.LogFileName);
-            log = Landis.Data.CreateTextFile(parameters.LogFileName);
-            log.AutoFlush = true;
-            log.Write("Time,InitialSiteRow,InitialSiteColumn,SitesChecked,CohortsKilled,MeanSeverity,");
-            foreach (IFireRegion ecoregion in FireRegions.Dataset)
-                log.Write("{0},", ecoregion.Name);
-            log.Write("TotalBurnedSites");
-            log.WriteLine("");
-
-            summaryLog = Landis.Data.CreateTextFile(parameters.SummaryLogFileName);
-            summaryLog.AutoFlush = true;
-            summaryLog.Write("Time,TotalSitesBurned,TotalNumberEvents");
-            foreach (IFireRegion ecoregion in FireRegions.Dataset)
-                summaryLog.Write(",{0}", ecoregion.Name);
-            summaryLog.WriteLine("");
-
-
+            MetadataHandler.InitializeMetadata(PlugIn.modelCore.CurrentTime, mapNameTemplate, parameters.LogFileName, parameters.SummaryLogFileName);
+            List<string> colnames = new List<string>();
+            foreach (IFireRegion fireregion in FireRegions.Dataset)
+            {
+                colnames.Add(fireregion.Name);
+            }
+            ExtensionMetadata.ColumnNames = colnames;
         }
 
         ///<summary>
@@ -158,23 +148,34 @@ namespace Landis.Extension.BaseFire
             int totalSitesInEvent = 0;
             if (FireEvent.Severity > 0)
             {
-                log.Write("{0},{1},{2},{3},{4},{5:0.0}",
-                          currentTime,
-                          FireEvent.StartLocation.Row,
-                          FireEvent.StartLocation.Column,
-                          FireEvent.NumSiteChecked,
-                          FireEvent.CohortsKilled,
-                          FireEvent.Severity);
+                eventLog.Clear();
+                EventsLog el = new EventsLog();
+                el.Time = currentTime;
+                el.Row = FireEvent.StartLocation.Row;
+                el.Column = FireEvent.StartLocation.Column;
+                el.SitesChecked = FireEvent.NumSiteChecked;
+                el.CohortsKilled = FireEvent.CohortsKilled;
+                el.Severity = FireEvent.Severity;
+                int[] fireSites = new int[FireRegions.Dataset.Count];
+                int i = 0;
 
                 foreach (IFireRegion fireregion in FireRegions.Dataset)
                 {
-                    log.Write(",{0}", FireEvent.SitesInEvent[fireregion.Index]);
+                    fireSites[i] = FireEvent.SitesInEvent[fireregion.Index];
+                    i = i + 1;
                     totalSitesInEvent += FireEvent.SitesInEvent[fireregion.Index];
                     summaryFireRegionEventCount[fireregion.Index] += FireEvent.SitesInEvent[fireregion.Index];
                 }
+                el.SitesEvent = new int[fireSites.Length];
+                foreach(int num in fireSites)
+                {
+                    el.SitesEvent[num] = fireSites[num];
+                }
+
                 summaryTotalSites += totalSitesInEvent;
-                log.Write(", {0}", totalSitesInEvent);
-                log.WriteLine("");
+                el.BurnedSites = totalSitesInEvent;
+                eventLog.AddObject(el);
+                eventLog.WriteToFile();
             }
         }
 
@@ -182,13 +183,25 @@ namespace Landis.Extension.BaseFire
 
         private void WriteSummaryLog(int currentTime)
         {
-            //int totalSitesInEvent = 0;
-            summaryLog.Write("{0},{1},{2}", currentTime, summaryTotalSites, summaryEventCount);
+            summaryLog.Clear();
+            SummaryLog sl = new SummaryLog();
+            sl.Time = currentTime;
+            sl.TotalSites = summaryTotalSites;
+            sl.NumEvents = summaryEventCount;
+
+            int[] summaryFireCount = new int[FireRegions.Dataset.Count];
             foreach (IFireRegion ecoregion in FireRegions.Dataset)
             {
-                summaryLog.Write(",{0}", summaryFireRegionEventCount[ecoregion.Index]);
+                summaryFireCount[ecoregion.Index] = summaryFireRegionEventCount[ecoregion.Index];
             }
-            summaryLog.WriteLine("");
+            sl.EcoCounts_ = new int[summaryFireCount.Length];
+            foreach (int num in summaryFireCount)
+            {
+                sl.EcoCounts_[num] = summaryFireCount[num];
+            }
+
+            summaryLog.AddObject(sl);
+            summaryLog.WriteToFile();
         }
     }
 }
