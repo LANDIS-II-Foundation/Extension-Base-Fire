@@ -1,8 +1,8 @@
-LandisData  Scenario
+LandisData  "Scenario"
 
-Duration  50
+Duration  100
 
-Species   species.txt
+Species   	./species.txt
 
 Ecoregions      ./ecoregions.txt
 EcoregionsMap   ./ecoregions.gis
@@ -10,27 +10,53 @@ EcoregionsMap   ./ecoregions.gis
 CellLength  100 << meters, 100 x 100 m = 1 ha
 
 
->> NOTE:  This example assumes that you have downloaded and installed 
->> the correpsonding extensions.  These extensions are currently packaged
->> together as a package.
+>> ---------------------------------------------
+>> SCENARIO OPTIONS FOR A SINGLE LANDISII RUN
+>>----------------------------------------------
 
->> Succession Extension     Initialization File
->> --------------------     -------------------
-   "Age-only Succession"    age-only-succession.txt
+>>	1. Sekect ONE Succession Extension
+>>	2. Select ONE OR MORE Disturbance Extensions (but only ONE harvest extension)
+>>	3. Select ONE OR MORE (compatible) Other Extensions
 
-
->> Disturbance Extensions   Initialization File
->> ----------------------   -------------------
-   "Base Fire"		    base-fire-6.0.txt
-
-   DisturbancesRandomOrder  yes  << optional parameter; default = no
+>>	Selection is made by uncommenting a line (ie, remove the >> symbols) 
 
 
->> Other Extensions         Initialization File
->> ----------------         -------------------
->>   "Output Cohort Stats"    cohort-stats.output.txt
->>   "Output Reclass"	    reclass.output.txt
+>> -----------------------
+>> SUCCESSION EXTENSIONS
+>> -----------------------
+
+>> 	Succession Extension     Initialization File
+>> 	--------------------     -------------------
+   	"Age-only Succession"	age-only-succession_SetUp.txt
+>>	"Biomass Succession"	biomass-succession_SetUp.txt
 
 
->>RandomNumberSeed  4,357  << optional parameter; default = the seed is
-                         << randomly generated using the current time
+>> --------------------------
+>> DISTURBANCE EXTENSIONS
+>> -------------------------
+
+>> 	Disturbance Extension	Initialization File
+>>	--------------------	-------------------
+	"Base Fire"		base-fire_SetUp.txt
+>>	"Base Wind"		base-wind_SetUp.txt
+>>	"Base Harvest"		base-harvest_SetUp.txt
+>>	"Base BDA"		base-BDA_SetUp.txt
+
+
+>>   DisturbancesRandomOrder  yes  	<< optional
+                         		<< Commented (default) is "no"
+
+>> ------------------------
+>> OTHER EXTENSONS
+>> ----------------------
+
+>> 	Other Extension			Initialization File
+>> 	----------------		-------------------
+>>   	"Output Biomass"		output_Biomass.txt		<<compatible w/ "Biomass Succession" only
+>>  	"Output Biomass Reclass"    	output_BiomassReclass.txt	<<compatible w/ "Biomass Succession" only
+
+
+>> RandomNumberSeed  147  << optional parameter; uncomment for reproducibilty tests
+                          << Commented (default) is a RandomNumberSeed generated using the current time
+
+

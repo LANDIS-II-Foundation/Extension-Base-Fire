@@ -1,0 +1,5 @@
+C:\Users\bmarr\Desktop\Working_BaseFire\Extension-Base-Fire\src\obj\Debug\base-fire.csprojResolveAssemblyReference.cache
+C:\Users\bmarr\Desktop\Working_BaseFire\Extension-Base-Fire\src\bin\Debug\Landis.Extension.BaseFire.dll
+C:\Users\bmarr\Desktop\Working_BaseFire\Extension-Base-Fire\src\bin\Debug\Landis.Extension.BaseFire.pdb
+C:\Users\bmarr\Desktop\Working_BaseFire\Extension-Base-Fire\src\obj\Debug\Landis.Extension.BaseFire.dll
+C:\Users\bmarr\Desktop\Working_BaseFire\Extension-Base-Fire\src\obj\Debug\Landis.Extension.BaseFire.pdb
