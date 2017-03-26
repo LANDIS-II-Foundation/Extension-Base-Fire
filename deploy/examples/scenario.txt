@@ -28,7 +28,7 @@ CellLength  100 << meters, 100 x 100 m = 1 ha
 >> 	Succession Extension     Initialization File
 >> 	--------------------     -------------------
    	"Age-only Succession"	age-only-succession_SetUp.txt
->>	"Biomass Succession"	biomass-succession_SetUp.txt
+
 
 
 >> --------------------------
@@ -52,8 +52,7 @@ CellLength  100 << meters, 100 x 100 m = 1 ha
 
 >> 	Other Extension			Initialization File
 >> 	----------------		-------------------
->>   	"Output Biomass"		output_Biomass.txt		<<compatible w/ "Biomass Succession" only
->>  	"Output Biomass Reclass"    	output_BiomassReclass.txt	<<compatible w/ "Biomass Succession" only
+
 
 
 >> RandomNumberSeed  147  << optional parameter; uncomment for reproducibilty tests
