@@ -16,7 +16,7 @@ CellLength  100 << meters, 100 x 100 m = 1 ha
 
 >>	1. Sekect ONE Succession Extension
 >>	2. Select ONE OR MORE Disturbance Extensions (but only ONE harvest extension)
->>	3. Select ONE OR MORE (compatible) Other Extensions
+>>	3. Select ONE OR MORE (compatible) Output Extensions
 
 >>	Selection is made by uncommenting a line (ie, remove the >> symbols) 
 
@@ -47,10 +47,10 @@ CellLength  100 << meters, 100 x 100 m = 1 ha
                          		<< Commented (default) is "no"
 
 >> ------------------------
->> OTHER EXTENSONS
+>> OUTPUT EXTENSONS
 >> ----------------------
 
->> 	Other Extension			Initialization File
+>> 	Outpu Extension			Initialization File
 >> 	----------------		-------------------
 
 
