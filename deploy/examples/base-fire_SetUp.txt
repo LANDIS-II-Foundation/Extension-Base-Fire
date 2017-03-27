@@ -68,4 +68,3 @@ InitialFireRegionsMap	./ecoregions.gis
 MapNames	fire/base-fire-severity-{timestep}.img
 LogFile		fire/base-fire-log.csv
 SummaryLogFile 	fire/base-fire-summary-log.csv
-
