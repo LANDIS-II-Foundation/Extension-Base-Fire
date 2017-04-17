@@ -4,10 +4,20 @@ Project Component:	Extension-Base-Fire
 Component Deposition:	https://github.com/LANDIS-II-Foundation/Extension-Base-Fire
 Author:			LANDIS-II Foundation
 Origin Date:		24 Mar 2017
-Final Date:		24 Mar 2017
+Final Date:		17 Apr 2017
 
 
-Welcome to the source code repository for Extension-Base-Fire, a LANDIS-II extension. 
+Welcome to the source code repository for Extension-Base-Fire, a LANDIS-II disturbance extension.
+Extension-Base-Fire uses various probability models to account for the basic characteristics of fire 
+at any given point on the landscape; namely, the possibility of ignition, the likelihoods of fire 
+initiation and spread, the probabilities of fire event size and severity, and the possibilities of damge
+to tree cohorts. The probability of an ignition is dependent on ecoregion. Fire initiation and spread are 
+functions of fuels accumulation and wind.  The extent of fire severity and event size are dependent on 
+fuels accumulation, wind characteristics, and fire decay. Finally, cohort damage is dependent on cohort age.  
+Extension-Base-Fire tracks 'time-since-last-fire' for each cell and requires calibration of the fire 
+rotation period.
+
+
 This README file provides the following info:
 
 	1) The basic relationship between 'the science' (various biological, geological, 
@@ -15,9 +25,9 @@ geochemical,climatological, ecological, spatial, and landscape ecological mechan
 and 'the model' (LANDIS-II);
 
 	2) The basic process for modifying and subsequently compiling the source code 
-(written in C#) into a new, Extension-Base-Fire.dll library.
+(written in C#) into a new, <name-of-your-extension-of-interest>.dll library.
 
-	3) The basic process for testing a new Extension-Base-Fire.dll library.
+	3) The basic process for testing a new, <name-of-your-extension-of-interest>.dll library.
 
 
 ##########################
@@ -160,13 +170,6 @@ Solution 'base harvest' (1 project)
 ...src\.vs\
 ...src\bin\		
 ...src\obj\
-
-
-	d. Save all files as a solution (.sln) in the LOCAL repo before performing the 
-	   (re)build 
-	d1. from the pull down menus: File ==> Save All
-	d2. Save as
-C:\Users\...\Extension-Base-Harvest\src\base-harvest.sln
 
 
 ===== STEP3. (Re)build the project ==========================================================
