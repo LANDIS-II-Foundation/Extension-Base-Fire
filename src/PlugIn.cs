@@ -167,9 +167,10 @@ namespace Landis.Extension.BaseFire
                     summaryFireRegionEventCount[fireregion.Index] += FireEvent.SitesInEvent[fireregion.Index];
                 }
                 el.SitesEvent = new int[fireSites.Length];
-                foreach(int num in fireSites)
+                i = 0;
+                while(i < fireSites.Length)
                 {
-                    el.SitesEvent[num] = fireSites[num];
+                    el.SitesEvent[i] = fireSites[i];
                 }
 
                 summaryTotalSites += totalSitesInEvent;
