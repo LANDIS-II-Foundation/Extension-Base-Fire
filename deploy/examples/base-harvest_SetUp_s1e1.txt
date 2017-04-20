@@ -6,11 +6,11 @@ Timestep    10
 
 
 >>-------------------------
->> HARVEST MAPS
+>> INPUT MAPS
 >>---------------------------
 
-ManagementAreas 	./base-harvest_Management.gis
-Stands     		./base-harvest_Stand.gis
+ManagementAreas 	./base-harvest_Management_s1e1.gis
+Stands     		./base-harvest_Stand_s1e1.gis
 
 
 >> -------------------------

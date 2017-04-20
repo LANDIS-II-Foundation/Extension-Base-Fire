@@ -1,4 +1,4 @@
-Title:			README_BaseFire2.1
+Title:			README_BaseFire3.0
 Project:		LANDIS-II Landscape Change Model
 Project Component:	Extension-Base-Fire
 Component Deposition:	https://github.com/LANDIS-II-Foundation/Extension-Base-Fire
@@ -8,6 +8,7 @@ Final Date:		17 Apr 2017
 
 
 Welcome to the source code repository for Extension-Base-Fire, a LANDIS-II disturbance extension.
+
 Extension-Base-Fire uses various probability models to account for the basic characteristics of fire 
 at any given point on the landscape; namely, the possibility of ignition, the likelihoods of fire 
 initiation and spread, the probabilities of fire event size and severity, and the possibilities of damge
