@@ -68,13 +68,17 @@ namespace Landis.Extension.BaseFire
             summaryFireRegionEventCount = new int[FireRegions.Dataset.Count];
 
             Event.Initialize(parameters.FireDamages);
-            MetadataHandler.InitializeMetadata(PlugIn.modelCore.CurrentTime, mapNameTemplate, parameters.LogFileName, parameters.SummaryLogFileName);
+            MetadataHandler.InitializeMetadata(parameters.Timestep, mapNameTemplate, parameters.LogFileName, parameters.SummaryLogFileName);
             List<string> colnames = new List<string>();
             foreach (IFireRegion fireregion in FireRegions.Dataset)
             {
                 colnames.Add(fireregion.Name);
             }
-            ExtensionMetadata.ColumnNames = colnames;
+
+            foreach(string name in colnames)
+            {
+                ExtensionMetadata.ColumnNames.Add(name);
+            }
         }
 
         ///<summary>

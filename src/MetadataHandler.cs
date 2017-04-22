@@ -87,7 +87,7 @@ namespace Landis.Extension.BaseFire
             {
                 Type = OutputType.Map,
                 Name = "Fire_Severity",
-                FilePath = MapNames.ReplaceTemplateVars(MapFileName, PlugIn.ModelCore.CurrentTime),
+                FilePath = MapNames.ReplaceTemplateVars(MapFileName, Timestep),
                 Map_DataType = MapDataType.Continuous,
                 Visualize = true,
                 //Map_Unit = "categorical",
