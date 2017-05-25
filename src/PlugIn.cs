@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using Landis.Library.Metadata;
 using System;
+using System.Diagnostics;
 
 namespace Landis.Extension.BaseFire
 {
@@ -64,21 +65,39 @@ namespace Landis.Extension.BaseFire
             Timestep = parameters.Timestep;
             mapNameTemplate = parameters.MapNamesTemplate;
             dynamicEcos = parameters.DynamicFireRegions;
+            string logFileName = parameters.LogFileName;
+            string summaryLogFileName = parameters.SummaryLogFileName;
 
             summaryFireRegionEventCount = new int[FireRegions.Dataset.Count];
-
             Event.Initialize(parameters.FireDamages);
-            MetadataHandler.InitializeMetadata(parameters.Timestep, mapNameTemplate, parameters.LogFileName, parameters.SummaryLogFileName);
+
+            modelCore.UI.WriteLine("   Opening and Initializing Fire log files \"{0}\" and \"{1}\"...", parameters.LogFileName, parameters.SummaryLogFileName);
+
+            // VS: Issue is here in InitializeMetadata
+            if (Debugger.Launch())
+            {
+                modelCore.UI.WriteLine("Debugger is attached");
+                if (Debugger.IsLogging())
+                {
+                    modelCore.UI.WriteLine("Debugging is logging");
+                }
+                Debugger.Break();
+            }
+            else
+            {
+                modelCore.UI.WriteLine("Debugger not attached");
+            }
             List<string> colnames = new List<string>();
             foreach (IFireRegion fireregion in FireRegions.Dataset)
             {
                 colnames.Add(fireregion.Name);
             }
-
-            foreach(string name in colnames)
-            {
-                ExtensionMetadata.ColumnNames.Add(name);
-            }
+            ExtensionMetadata.ColumnNames = colnames;
+            MetadataHandler.InitializeMetadata(Timestep, mapNameTemplate, logFileName, summaryLogFileName);
+            
+            
+            //if (isDebugEnabled)
+               // modelCore.UI.WriteLine("Initialization done");
         }
 
         ///<summary>
@@ -175,6 +194,7 @@ namespace Landis.Extension.BaseFire
                 while(i < fireSites.Length)
                 {
                     el.SitesEvent[i] = fireSites[i];
+                    ++i;
                 }
 
                 summaryTotalSites += totalSitesInEvent;
@@ -191,19 +211,26 @@ namespace Landis.Extension.BaseFire
             summaryLog.Clear();
             SummaryLog sl = new SummaryLog();
             sl.Time = currentTime;
-            sl.TotalSites = summaryTotalSites;
-            sl.NumEvents = summaryEventCount;
+            sl.TotalSitesBurned = summaryTotalSites;
+            sl.NumberFires = summaryEventCount;
 
             int[] summaryFireCount = new int[FireRegions.Dataset.Count];
             foreach (IFireRegion ecoregion in FireRegions.Dataset)
             {
                 summaryFireCount[ecoregion.Index] = summaryFireRegionEventCount[ecoregion.Index];
             }
+
             sl.EcoCounts_ = new int[summaryFireCount.Length];
+            for(int i = 0; i < sl.EcoCounts_.Length; i++)
+            {
+                sl.EcoCounts_[i] = summaryFireCount[i];
+            }
+            /*
             foreach (int num in summaryFireCount)
             {
                 sl.EcoCounts_[num] = summaryFireCount[num];
             }
+            */
 
             summaryLog.AddObject(sl);
             summaryLog.WriteToFile();
