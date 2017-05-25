@@ -18,9 +18,7 @@ namespace Landis.Extension.BaseFire
 
         public static void InitializeMetadata(int Timestep, string MapFileName, string eventLogName, string summaryLogName)
         {
-            var test = "\n\n\n\n landis test 3\n\n\n\n\n";
-
-            //throw new Exception(test);
+            
             ScenarioReplicationMetadata scenRep = new ScenarioReplicationMetadata()
             {
                 RasterOutCellArea = PlugIn.ModelCore.CellArea,
@@ -29,7 +27,6 @@ namespace Landis.Extension.BaseFire
             };
 
             Extension = new ExtensionMetadata(PlugIn.ModelCore)
-            //Extension = new ExtensionMetadata()
             {
                 Name = PlugIn.ExtensionName,
                 TimeInterval = Timestep, //change this to PlugIn.TimeStep for other extensions

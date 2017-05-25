@@ -72,21 +72,7 @@ namespace Landis.Extension.BaseFire
             Event.Initialize(parameters.FireDamages);
 
             modelCore.UI.WriteLine("   Opening and Initializing Fire log files \"{0}\" and \"{1}\"...", parameters.LogFileName, parameters.SummaryLogFileName);
-
-            // VS: Issue is here in InitializeMetadata
-            if (Debugger.Launch())
-            {
-                modelCore.UI.WriteLine("Debugger is attached");
-                if (Debugger.IsLogging())
-                {
-                    modelCore.UI.WriteLine("Debugging is logging");
-                }
-                Debugger.Break();
-            }
-            else
-            {
-                modelCore.UI.WriteLine("Debugger not attached");
-            }
+            
             List<string> colnames = new List<string>();
             foreach (IFireRegion fireregion in FireRegions.Dataset)
             {
@@ -225,12 +211,6 @@ namespace Landis.Extension.BaseFire
             {
                 sl.EcoCounts_[i] = summaryFireCount[i];
             }
-            /*
-            foreach (int num in summaryFireCount)
-            {
-                sl.EcoCounts_[num] = summaryFireCount[num];
-            }
-            */
 
             summaryLog.AddObject(sl);
             summaryLog.WriteToFile();
