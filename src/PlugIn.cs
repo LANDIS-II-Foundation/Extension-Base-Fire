@@ -175,7 +175,7 @@ namespace Landis.Extension.BaseFire
                     totalSitesInEvent += FireEvent.SitesInEvent[fireregion.Index];
                     summaryFireRegionEventCount[fireregion.Index] += FireEvent.SitesInEvent[fireregion.Index];
                 }
-                el.SitesEvent = new int[fireSites.Length];
+                el.SitesEvent = new double[fireSites.Length];
                 i = 0;
                 while(i < fireSites.Length)
                 {
@@ -206,7 +206,7 @@ namespace Landis.Extension.BaseFire
                 summaryFireCount[ecoregion.Index] = summaryFireRegionEventCount[ecoregion.Index];
             }
 
-            sl.EcoCounts_ = new int[summaryFireCount.Length];
+            sl.EcoCounts_ = new double[summaryFireCount.Length];
             for(int i = 0; i < sl.EcoCounts_.Length; i++)
             {
                 sl.EcoCounts_[i] = summaryFireCount[i];

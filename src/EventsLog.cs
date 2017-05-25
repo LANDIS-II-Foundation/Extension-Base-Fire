@@ -23,8 +23,8 @@ namespace Landis.Extension.BaseFire
         [DataFieldAttribute(Desc = "Mean Severity")]
         public double Severity { set; get; }
 
-        [DataFieldAttribute(Desc = "Sites in Fire Event by Ecoregion")]
-        public int[] SitesEvent { set; get; }
+        [DataFieldAttribute(Desc = "Sites in Fire Event by Ecoregion", ColumnList = true)]
+        public double[] SitesEvent { set; get; }
 
         [DataFieldAttribute(Desc = "Total Burned Sites")]
         public int BurnedSites { set; get; }
