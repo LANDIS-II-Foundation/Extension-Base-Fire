@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using Landis.Library.Metadata;
-using Landis.Core;
+﻿using Landis.Library.Metadata;
 
 namespace Landis.Extension.BaseFire
 {
@@ -30,7 +24,7 @@ namespace Landis.Extension.BaseFire
         public double Severity { set; get; }
 
         [DataFieldAttribute(Desc = "Sites in Fire Event by Ecoregion", ColumnList = true)]
-        public int[] SitesEvent { set; get; }
+        public double[] SitesEvent { set; get; }
 
         [DataFieldAttribute(Desc = "Total Burned Sites")]
         public int BurnedSites { set; get; }
