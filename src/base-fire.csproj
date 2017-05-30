@@ -32,53 +32,52 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Edu.Wisc.Forest.Flel.Util">
-     <SpecificVersion>False</SpecificVersion>
-     <Private>False</Private>
-    </Reference>
-	<Reference Include="Landis.Core">
-     <SpecificVersion>False</SpecificVersion>
-     <Private>False</Private>
-    </Reference>
-	<Reference Include="Landis.Library.AgeOnlyCohorts">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
-	<Reference Include="Landis.Library.Cohorts">
-     <SpecificVersion>False</SpecificVersion>
-     <Private>False</Private>
+    <Reference Include="Landis.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
     </Reference>
-	<Reference Include="Landis.Library.Metadata">
-	 <SpecificVersion>False</SpecificVersion>
-     <Private>False</Private>
+    <Reference Include="Landis.Library.AgeOnlyCohorts">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
     </Reference>
-	<Reference Include="Landis.SpatialModeling">
-     <SpecificVersion>False</SpecificVersion>
-     <Private>False</Private>
+    <Reference Include="Landis.Library.Cohorts">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
     </Reference>
-	<Reference Include="System" />
+    <Reference Include="Landis.Library.Metadata">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Landis.SpatialModeling">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Troschuetz.Random">
-    </Reference>
+    <Reference Include="Troschuetz.Random" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DamageTable.cs" />
     <Compile Include="DynamicFireRegion.cs" />
-	<Compile Include="Event.cs" />
-	<Compile Include="EventsLog.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="EventsLog.cs" />
     <Compile Include="FireRegion.cs" />
     <Compile Include="FireRegions.cs" />
     <Compile Include="FuelCurve.cs" />
     <Compile Include="InputParameterParser.cs" />
     <Compile Include="InputParameters.cs" />
-	<Compile Include="MapNames.cs" />
-	<Compile Include="MetadataHandler.cs" />
+    <Compile Include="MapNames.cs" />
+    <Compile Include="MetadataHandler.cs" />
     <Compile Include="PlugIn.cs" />
-	<Compile Include="SiteVars.cs" />
-	<Compile Include="SummaryLog.cs" />
+    <Compile Include="SiteVars.cs" />
+    <Compile Include="SummaryLog.cs" />
     <Compile Include="UIntPixel.cs" />
     <Compile Include="WindCurve.cs" />
     <Compile Include="BytePixel.cs" />
@@ -89,7 +88,7 @@
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>call $(SolutionDir)\install-libs.cmd</PreBuildEvent>
+    <PreBuildEvent> call $(SolutionDir)\install-libs.cmd </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

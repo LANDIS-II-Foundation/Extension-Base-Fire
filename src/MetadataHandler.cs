@@ -18,7 +18,7 @@ namespace Landis.Extension.BaseFire
 
         public static void InitializeMetadata(int Timestep, string MapFileName, string eventLogName, string summaryLogName)
         {
-
+            
             ScenarioReplicationMetadata scenRep = new ScenarioReplicationMetadata()
             {
                 RasterOutCellArea = PlugIn.ModelCore.CellArea,
@@ -27,7 +27,6 @@ namespace Landis.Extension.BaseFire
             };
 
             Extension = new ExtensionMetadata(PlugIn.ModelCore)
-            //Extension = new ExtensionMetadata()
             {
                 Name = PlugIn.ExtensionName,
                 TimeInterval = Timestep, //change this to PlugIn.TimeStep for other extensions
@@ -37,22 +36,25 @@ namespace Landis.Extension.BaseFire
             //---------------------------------------
             //          table outputs:   
             //---------------------------------------
-
             CreateDirectory(eventLogName);
             CreateDirectory(summaryLogName);
+
             PlugIn.eventLog = new MetadataTable<EventsLog>(eventLogName);
             PlugIn.summaryLog = new MetadataTable<SummaryLog>(summaryLogName);
-            //PlugIn.eventLog = new MetadataTable<EventsLog>("Harvest-event-log.csv");
-            //PlugIn.summaryLog = new MetadataTable<SummaryLog>("Harvest-summary-log.csv");
+
+            //PlugIn.eventLog = new MetadataTable<EventsLog>("Fire-event-log.csv");
+            //PlugIn.summaryLog = new MetadataTable<SummaryLog>("Fire-summary-log.csv");
 
             PlugIn.ModelCore.UI.WriteLine("   Generating event table...");
+
             OutputMetadata tblOut_events = new OutputMetadata()
             {
                 Type = OutputType.Table,
-                Name = "EventLog",
+                Name = "FireEventsLog",
                 FilePath = PlugIn.eventLog.FilePath,
                 Visualize = false,
             };
+
             tblOut_events.RetriveFields(typeof(EventsLog));
             Extension.OutputMetadatas.Add(tblOut_events);
 
@@ -60,10 +62,11 @@ namespace Landis.Extension.BaseFire
             OutputMetadata tblOut_summary = new OutputMetadata()
             {
                 Type = OutputType.Table,
-                Name = "SummaryLog",
+                Name = "FireSummaryLog",
                 FilePath = PlugIn.summaryLog.FilePath,
                 Visualize = true,
             };
+
             tblOut_summary.RetriveFields(typeof(SummaryLog));
             Extension.OutputMetadatas.Add(tblOut_summary);
 
@@ -81,7 +84,7 @@ namespace Landis.Extension.BaseFire
             //    Visualize = true,
             //};
             //Extension.OutputMetadatas.Add(mapOut_BiomassRemoved);
-
+            
 
             OutputMetadata mapOut_FireSeverity = new OutputMetadata()
             {
@@ -104,7 +107,7 @@ namespace Landis.Extension.BaseFire
             path = path.Trim(null);
             if (path.Length == 0)
                 throw new ArgumentException("path is empty or just whitespace");
-
+            //throw new Exception(path);
             string dir = Path.GetDirectoryName(path);
             if (!string.IsNullOrEmpty(dir))
             {
