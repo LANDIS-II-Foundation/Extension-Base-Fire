@@ -61,8 +61,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Troschuetz.Random">
-    </Reference>
+    <Reference Include="Troschuetz.Random" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DamageTable.cs" />
