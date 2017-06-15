@@ -35,7 +35,7 @@ Source: ..\examples\*.bat; DestDir: {#AppDir}\examples\Base Fire
 
 ; LANDIS-II identifies the extension with the info in this .txt file
 ; NB. New releases must modify the name of this file and the info in it
-#define InfoTxt "Base Fire 3.0.txt"
+#define InfoTxt "Base Fire 3.1.txt"
 Source: {#InfoTxt}; DestDir: {#LandisPlugInDir}
 
 
