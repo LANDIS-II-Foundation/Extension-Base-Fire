@@ -1,6 +1,6 @@
 #define PackageName      "Base Fire"
 #define PackageNameLong  "Base Fire Extension"
-#define Version          "3.0.3"
+#define Version          "3.1"
 #define ReleaseType      "official"
 #define CoreVersion      "6.0"
 #define CoreReleaseAbbr  ""
