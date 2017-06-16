@@ -1,6 +1,6 @@
 LandisData   Extension
 
-Name         "internal-to-LANDISII Base-Fire"
+Name         "Base-Fire"
 Version      "3.1"
 Type         disturbance:fire
 Assembly     Landis.Extension.BaseFire
