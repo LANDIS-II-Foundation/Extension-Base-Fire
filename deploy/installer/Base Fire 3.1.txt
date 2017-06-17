@@ -1,10 +1,9 @@
 LandisData   Extension
 
-Name         "Base-Fire"
+Name         "Base Fire"
 Version      "3.1"
 Type         disturbance:fire
 Assembly     Landis.Extension.BaseFire
 Class        Landis.Extension.BaseFire.PlugIn
 Description  "Fire Disturbance"
-UserGuide    "LANDIS-II Base Fire v3.0 User Guide.pdf"
 CoreVersion  6.0
