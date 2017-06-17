@@ -29,9 +29,9 @@ Source: ..\..\src\bin\debug\Landis.Extension.BaseFire.dll; DestDir: {#ExtDir}; F
 
 
 ; Complete example for testing the extension
-Source: ..\examples\*.txt; DestDir: {#AppDir}\examples\Base Fire
-Source: ..\examples\*.gis; DestDir: {#AppDir}\examples\Base Fire
-Source: ..\examples\*.bat; DestDir: {#AppDir}\examples\Base Fire
+Source: ..\examples\*.txt; DestDir: {#AppDir}\examples\Base Fire; Flags: replacesameversion
+Source: ..\examples\*.gis; DestDir: {#AppDir}\examples\Base Fire; Flags: replacesameversion
+Source: ..\examples\*.bat; DestDir: {#AppDir}\examples\Base Fire; Flags: replacesameversion
 
 ; LANDIS-II identifies the extension with the info in this .txt file
 ; NB. New releases must modify the name of this file and the info in it
