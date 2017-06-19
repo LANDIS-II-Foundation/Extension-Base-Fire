@@ -1,10 +1,10 @@
-Title:			README_BaseFire3.0
+Title:			README_BaseFire3.1
 Project:		LANDIS-II Landscape Change Model
 Project Component:	Extension-Base-Fire
 Component Deposition:	https://github.com/LANDIS-II-Foundation/Extension-Base-Fire
 Author:			LANDIS-II Foundation
 Origin Date:		24 Mar 2017
-Final Date:		22 Apr 2017
+Final Date:		15 Jun 2017
 
 
 Welcome to the source code repository for Extension-Base-Fire, a LANDIS-II disturbance extension.

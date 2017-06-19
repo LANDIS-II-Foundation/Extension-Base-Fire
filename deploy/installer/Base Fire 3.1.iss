@@ -24,10 +24,6 @@ Source: ..\..\src\bin\debug\Landis.Extension.BaseFire.dll; DestDir: {#ExtDir}; F
 ; (There are no auxiliary libraries for Base Fire)
 
 
-; User Guides are no longer shipped with installer
-;Source: docs\LANDIS-II Base Fire v3.0 User Guide.pdf; DestDir: {#AppDir}\docs
-
-
 ; Complete example for testing the extension
 Source: ..\examples\*.txt; DestDir: {#AppDir}\examples\Base Fire; Flags: replacesameversion
 Source: ..\examples\*.gis; DestDir: {#AppDir}\examples\Base Fire; Flags: replacesameversion
