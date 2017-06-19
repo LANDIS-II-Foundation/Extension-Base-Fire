@@ -1,6 +1,6 @@
 #define PackageName      "Base Fire"
 #define PackageNameLong  "Base Fire Extension"
-#define Version          "3.0.3"
+#define Version          "3.1"
 #define ReleaseType      "official"
 #define CoreVersion      "6.0"
 #define CoreReleaseAbbr  ""
@@ -24,18 +24,14 @@ Source: ..\..\src\bin\debug\Landis.Extension.BaseFire.dll; DestDir: {#ExtDir}; F
 ; (There are no auxiliary libraries for Base Fire)
 
 
-; User Guides are no longer shipped with installer
-;Source: docs\LANDIS-II Base Fire v3.0 User Guide.pdf; DestDir: {#AppDir}\docs
-
-
 ; Complete example for testing the extension
-Source: ..\examples\*.txt; DestDir: {#AppDir}\examples\Base Fire
-Source: ..\examples\*.gis; DestDir: {#AppDir}\examples\Base Fire
-Source: ..\examples\*.bat; DestDir: {#AppDir}\examples\Base Fire
+Source: ..\examples\*.txt; DestDir: {#AppDir}\examples\Base Fire; Flags: replacesameversion
+Source: ..\examples\*.gis; DestDir: {#AppDir}\examples\Base Fire; Flags: replacesameversion
+Source: ..\examples\*.bat; DestDir: {#AppDir}\examples\Base Fire; Flags: replacesameversion
 
 ; LANDIS-II identifies the extension with the info in this .txt file
 ; NB. New releases must modify the name of this file and the info in it
-#define InfoTxt "Base Fire 3.0.txt"
+#define InfoTxt "Base Fire 3.1.txt"
 Source: {#InfoTxt}; DestDir: {#LandisPlugInDir}
 
 
