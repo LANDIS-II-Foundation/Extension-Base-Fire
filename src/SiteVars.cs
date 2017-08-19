@@ -31,6 +31,7 @@ namespace Landis.Extension.BaseFire
             cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.AgeCohorts");
 
             PlugIn.ModelCore.RegisterSiteVar(SiteVars.Severity, "Fire.Severity");
+            PlugIn.ModelCore.RegisterSiteVar(SiteVars.TimeOfLastFire, "Fire.TimeOfLastFire");
 
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
