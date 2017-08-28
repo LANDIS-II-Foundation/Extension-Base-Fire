@@ -17,5 +17,5 @@ LogFile		bda/bda-log.csv
 >> INPUT PARAMETERS
 >>-----------------------------------------
 
-BDAInputFiles	base-BDA_Input)s1e1.txt
+BDAInputFiles	base-BDA_Input_s1e1.txt
 
