@@ -12,7 +12,7 @@ namespace Landis.Extension.BaseFire
     {
         private static ISiteVar<IFireRegion> ecoregions;
         private static ISiteVar<Event> eventVar;
-        private static ISiteVar<int> timeOfLastFire;
+        private static ISiteVar<int> timeOfLastEvent;
         private static ISiteVar<int> timeOfLastWind;
         private static ISiteVar<byte> severity;
         private static ISiteVar<bool> disturbed;
@@ -24,21 +24,21 @@ namespace Landis.Extension.BaseFire
         {
             ecoregions     = PlugIn.ModelCore.Landscape.NewSiteVar<IFireRegion>();
             eventVar        = PlugIn.ModelCore.Landscape.NewSiteVar<Event>(InactiveSiteMode.DistinctValues);
-            timeOfLastFire = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
+            timeOfLastEvent = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
             severity = PlugIn.ModelCore.Landscape.NewSiteVar<byte>();
             disturbed = PlugIn.ModelCore.Landscape.NewSiteVar<bool>();
 
             cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.AgeCohorts");
 
             PlugIn.ModelCore.RegisterSiteVar(SiteVars.Severity, "Fire.Severity");
-            PlugIn.ModelCore.RegisterSiteVar(SiteVars.TimeOfLastFire, "Fire.TimeOfLastFire");
+            PlugIn.ModelCore.RegisterSiteVar(SiteVars.TimeOfLastFire, "Fire.TimeOfLastEvent");
 
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
                 ushort maxAge = GetMaxAge(site);
                 //PlugIn.ModelCore.Log.WriteLine("maxAge = {0}.", maxAge);
 
-                timeOfLastFire[site] = PlugIn.ModelCore.StartTime - maxAge;
+                timeOfLastEvent[site] = PlugIn.ModelCore.StartTime - maxAge;
             }
         }
 
@@ -70,7 +70,7 @@ namespace Landis.Extension.BaseFire
         public static ISiteVar<int> TimeOfLastFire
         {
             get {
-                return timeOfLastFire;
+                return timeOfLastEvent;
             }
         }
 
