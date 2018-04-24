@@ -1,18 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{62771E6E-2D49-4ADD-A860-FCAEB4D01549}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>base_fire</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AssemblyVersion>3</AssemblyVersion>
+    <NeutralLanguage>English</NeutralLanguage>
     <AssemblyName>Landis.Extension.BaseFire</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <RootNamespace>Landis.Extension.BaseFire</RootNamespace>
+    <PackageLicenseUrl>https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://sites.google.com/site/landismodel/home</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/LANDIS-II-Foundation/Extension-Base-Fire</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>LANDIS-II;Landis;Extension;Base fire</PackageTags>
+    <Authors>LANDIS-II Foundation</Authors>
+    <Company>LANDIS-II Foundation</Company>
+    <Description>Extension Base-Fire</Description>
   </PropertyGroup>
+  
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -31,70 +35,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Edu.Wisc.Forest.Flel.Util">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Landis.Core">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Landis.Library.AgeOnlyCohorts">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Landis.Library.Cohorts">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Landis.Library.Metadata">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Landis.SpatialModeling">
-      <SpecificVersion>False</SpecificVersion>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Troschuetz.Random" />
+    <PackageReference Include="Landis.Core" Version="1.0.0" />
+    <PackageReference Include="Landis.Library.AgeOnlyCohorts" Version="1.0.0" />
+    <PackageReference Include="Landis.Library.Cohorts" Version="1.0.0" />
+    <PackageReference Include="Landis.Library.Metadata" Version="1.0.0" />
+    <PackageReference Include="Landis.SpatialModeling" Version="1.0.0" />
+    <PackageReference Include="Landis.Utilities" Version="1.0.0" />
+    <PackageReference Include="Troschuetz.Random" Version="4.3.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="DamageTable.cs" />
-    <Compile Include="DynamicFireRegion.cs" />
-    <Compile Include="Event.cs" />
-    <Compile Include="EventsLog.cs" />
-    <Compile Include="FireRegion.cs" />
-    <Compile Include="FireRegions.cs" />
-    <Compile Include="FuelCurve.cs" />
-    <Compile Include="InputParameterParser.cs" />
-    <Compile Include="InputParameters.cs" />
-    <Compile Include="MapNames.cs" />
-    <Compile Include="MetadataHandler.cs" />
-    <Compile Include="PlugIn.cs" />
-    <Compile Include="SiteVars.cs" />
-    <Compile Include="SummaryLog.cs" />
-    <Compile Include="UIntPixel.cs" />
-    <Compile Include="WindCurve.cs" />
-    <Compile Include="BytePixel.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PreBuildEvent> call $(SolutionDir)\install-libs.cmd </PreBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+ 
 </Project>
+
+

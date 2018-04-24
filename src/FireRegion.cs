@@ -3,7 +3,7 @@
 
 using Landis.SpatialModeling;
 //using Landis.SpatialModeling.CoreServices;
-using Edu.Wisc.Forest.Flel.Util;
+using Landis.Utilities;
 using System.Collections.Generic;
 
 namespace Landis.Extension.BaseFire
