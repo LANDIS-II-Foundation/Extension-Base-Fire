@@ -25,11 +25,12 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\netstandard2.0\Landis.Extension.BaseFire.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>c:\Program Files\LANDIS-II\6.0\bin\</OutputPath>
+    <OutputPath>D:\CGAProjects\Rob\landis_ii_dotnet_fork\Landis-ii-Core\Landis-ii-Core\bin\extensions\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

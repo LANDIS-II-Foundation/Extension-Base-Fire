@@ -75,8 +75,8 @@
 ; #define LandisDeployDir    GetEnv("LANDIS_DEPLOY")
 ; #define LandisDeployDir    "J:\Scheller\LANDIS-II\deploy"
 ; #define LandisDeployDir    "C:\Users\lucash\Documents\LANDIS_Code\Succession_Code\Extensions-Succession\Century-succession\trunk\deploy"
-#define LandisInstallDir   "C:\Program Files\LANDIS-II"
-#define LandisBinDir       LandisInstallDir + "\v6\bin"
+#define LandisInstallDir   "C:\Program Files\LANDIS-II-v7"
+#define LandisBinDir       LandisInstallDir
 #define LandisPlugInDir    LandisInstallDir + "\plug-ins"
 
 ; The directory where LANDIS-II code is built for deployment
@@ -88,22 +88,23 @@
 #else
   #define CoreReleaseSuffix "-" + CoreReleaseAbbr
 #endif
-#define CoreVersionRelease CoreVersion + CoreReleaseSuffix
-#define CoreDir            LandisInstallDir + "\" + CoreVersionRelease
-#define CoreBinDir         CoreDir + "\bin"
+;#define CoreVersionRelease CoreVersion + CoreReleaseSuffix
+;#define CoreDir            LandisInstallDir + "\" + CoreVersionRelease
+#define CoreDir            LandisInstallDir 
+#define CoreBinDir         CoreDir + "\commands"
 
 [Setup]
-AppName=LANDIS-II {#PackageName} v{#Version}{#ReleaseForAppName}
-AppVerName=LANDIS-II {#PackageNameLong} v{#Version}{#ReleaseForAppVerName}
+AppName=LANDIS-II-v7 {#PackageName} v{#Version}{#ReleaseForAppName}
+AppVerName=LANDIS-II-v7 {#PackageNameLong} v{#Version}{#ReleaseForAppVerName}
 AppPublisher=Portland State University
 ; DefaultDirName={pf}\LANDIS-II\{#CoreVersionRelease}
 DefaultDirName={#LandisInstallDir}\{#CoreVersionRelease}
 UsePreviousAppDir=no
-DefaultGroupName=LANDIS-II\{#CoreVersionRelease}
+DefaultGroupName=LANDIS-II-v7\{#CoreVersionRelease}
 UsePreviousGroup=no
 
 OutputDir={#SourcePath}
-OutputBaseFilename=LANDIS-II {#PackageName} {#VersionRelease}-setup
+OutputBaseFilename=LANDIS-II-v7 {#PackageName} {#VersionRelease}-setup
 VersionInfoCompany=Portland State University
 #if PatchLevel == ""
 VersionInfoVersion={#MajorMinor}.0.{#ReleaseAsInt}

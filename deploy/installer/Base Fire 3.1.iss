@@ -2,11 +2,11 @@
 #define PackageNameLong  "Base Fire Extension"
 #define Version          "3.1.4"
 #define ReleaseType      "official"
-#define CoreVersion      "6.0"
+#define CoreVersion      "7.0"
 #define CoreReleaseAbbr  ""
 
-#define ExtDir "C:\Program Files\LANDIS-II\v6\bin\extensions"
-#define AppDir "C:\Program Files\LANDIS-II\v6\"
+#define ExtDir "C:\Program Files\LANDIS-II\extensions"
+#define AppDir "C:\Program Files\LANDIS-II"
 #define LandisPlugInDir "C:\Program Files\LANDIS-II\plug-ins"
 
 #include "package (Setup section) v6.0.iss"
@@ -16,14 +16,14 @@
 ; This .dll IS the extension (ie, the extension's assembly)
 ; NB: Do not put an additional version number in the file name of this .dll
 ; (The name of this .dll is defined in the extension's \src\*.csproj file)
-Source: ..\..\src\bin\debug\Landis.Extension.BaseFire.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: ..\..\src\bin\debug\netstandard2.0\publish\Landis.Extension.BaseFire.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 
 
 ; Requisite auxiliary libraries
 ; NB. These libraries are used by other extensions and thus are never uninstalled.
-Source: ..\..\src\bin\debug\Landis.Library.AgeOnlyCohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
-Source: ..\..\src\bin\debug\Landis.Library.Cohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
-Source: ..\..\src\bin\debug\Landis.Library.Metadata.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: ..\..\src\bin\debug\netstandard2.0\publish\Landis.Library.AgeOnlyCohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: ..\..\src\bin\debug\netstandard2.0\publish\Landis.Library.Cohorts.dll; DestDir: {#ExtDir}; Flags: replacesameversion
+Source: ..\..\src\bin\debug\netstandard2.0\publish\Landis.Library.Metadata.dll; DestDir: {#ExtDir}; Flags: replacesameversion
 
 
 ; Complete example for testing the extension
