@@ -2,49 +2,38 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>3</AssemblyVersion>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion>
     <NeutralLanguage>English</NeutralLanguage>
-    <AssemblyName>Landis.Extension.BaseFire</AssemblyName>
     <RootNamespace>Landis.Extension.BaseFire</RootNamespace>
+    <AssemblyName>Landis.Extension.BaseFire-v4</AssemblyName>
+    <AssemblyTitle>Landis.Extension.BaseFire-v4</AssemblyTitle>
     <PackageLicenseUrl>https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://sites.google.com/site/landismodel/home</PackageProjectUrl>
+    <PackageProjectUrl>http://www.landis-ii.org</PackageProjectUrl>
     <RepositoryUrl>https://github.com/LANDIS-II-Foundation/Extension-Base-Fire</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>LANDIS-II;Landis;Extension;Base fire</PackageTags>
     <Authors>LANDIS-II Foundation</Authors>
     <Company>LANDIS-II Foundation</Company>
     <Description>Extension Base-Fire</Description>
+    <FileVersion>7.0.0.0</FileVersion>
   </PropertyGroup>
-  
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\netstandard2.0\Landis.Extension.BaseFire.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>D:\CGAProjects\Rob\landis_ii_dotnet_fork\Landis-ii-Core\Landis-ii-Core\bin\extensions\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Landis.Core" Version="1.0.0" />
-    <PackageReference Include="Landis.Library.AgeOnlyCohorts" Version="1.0.0" />
-    <PackageReference Include="Landis.Library.Cohorts" Version="1.0.0" />
-    <PackageReference Include="Landis.Library.Metadata" Version="1.0.0" />
-    <PackageReference Include="Landis.SpatialModeling" Version="1.0.0" />
-    <PackageReference Include="Landis.Utilities" Version="1.0.0" />
-    <PackageReference Include="Troschuetz.Random" Version="4.3.0" />
+    <PackageReference Include="Landis.Core" Version="2.0.0" />
   </ItemGroup>
- 
+  
+  <ItemGroup>
+    <Reference Include="Landis.Library.AgeOnlyCohorts-v3">
+      <HintPath>lib\Landis.Library.AgeOnlyCohorts-v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Cohorts-v2">
+      <HintPath>lib\Landis.Library.Cohorts-v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Landis.Library.Metadata-v2">
+      <HintPath>lib\Landis.Library.Metadata-v2.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>
 
 
