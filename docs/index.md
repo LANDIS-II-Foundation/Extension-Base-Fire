@@ -19,14 +19,15 @@ To use Base Fire, you need:
 
 Version 4.0 can be downloaded [here](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/deploy/installer/LANDIS-II-V7%20Base%20Fire%204.0-setup.exe). To install it on your computer, launch the installer.
 
-# Citation
-
-He, H. S. and Mladenoff, D. J. Spatially explicit and stochastic simulation of forest landscape fire disturbance and succession. Ecology. 1999; 80(1):81-99.
 # Example Files
 
 LANDIS-II requires a global parameter file for your scenario, and separate parameter files for each extension.
 
-Example files are [here](https://github.com/LANDIS-II-Foundation/NEED UPDATE.zip).
+Example files are [here](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/testings/Core7.0-BaseFire4.0/Base-Fire-example.zip).
+
+# Citation
+
+He, H. S. and Mladenoff, D. J. Spatially explicit and stochastic simulation of forest landscape fire disturbance and succession. Ecology. 1999; 80(1):81-99.
 
 # Support
 
