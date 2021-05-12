@@ -23,7 +23,7 @@ Version 4.0 can be downloaded [here](https://github.com/LANDIS-II-Foundation/Ext
 
 LANDIS-II requires a global parameter file for your scenario, and separate parameter files for each extension.
 
-Example files are [here](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/testings/Core7.0-BaseFire4.0/Base-Fire-example.zip).
+Example files are [here](https://downgit.github.io/#/home?url=https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/testings/Core7.0-BaseFire4.0).
 
 # Citation
 
