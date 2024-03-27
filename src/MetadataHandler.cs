@@ -7,7 +7,7 @@ using Landis.Library.Metadata;
 using Landis.Core;
 using Landis.Utilities;
 using System.IO;
-using Flel = Landis.Utilities;
+using Landis.Utilities;
 
 namespace Landis.Extension.BaseFire
 {
@@ -103,18 +103,17 @@ namespace Landis.Extension.BaseFire
         }
         public static void CreateDirectory(string path)
         {
-            //Require.ArgumentNotNull(path);
             path = path.Trim(null);
+            
             if (path.Length == 0)
                 throw new ArgumentException("path is empty or just whitespace");
-            //throw new Exception(path);
+            
             string dir = Path.GetDirectoryName(path);
             if (!string.IsNullOrEmpty(dir))
             {
-                Flel.Directory.EnsureExists(dir);
+                Landis.Utilities.Directory.EnsureExists(dir);
             }
 
-            //return new StreamWriter(path);
             return;
         }
     }
