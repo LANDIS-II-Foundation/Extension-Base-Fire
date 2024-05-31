@@ -40,12 +40,16 @@ namespace Landis.Extension.OriginalFire
 
         protected override IInputParameters Parse()
         {
-            InputVar<string> landisData = new InputVar<string>("LandisData");
-            ReadVar(landisData);
-            if (landisData.Value.Actual != PlugIn.ExtensionName)
-                throw new InputValueException(landisData.Value.String, "The value is not \"{0}\"", PlugIn.ExtensionName);
+            ReadLandisDataVar();
+            //RegisterForInputValues();
 
-            InputParameters parameters = new InputParameters();
+
+            //InputVar<string> landisData = new InputVar<string>("LandisData");
+            //ReadVar(landisData);
+            //if (landisData.Value.Actual != PlugIn.ExtensionName)
+            //    throw new InputValueException(landisData.Value.String, "The value is not \"{0}\"", PlugIn.ExtensionName);
+
+            InputParameters parameters = new InputParameters(PlugIn.ModelCore.Species);
 
             InputVar<int> timestep = new InputVar<int>("Timestep");
             ReadVar(timestep);
@@ -63,7 +67,7 @@ namespace Landis.Extension.OriginalFire
             foreach (DataRow row in speciesTable.Rows)
             {
                 ISpecies species = ReadSpecies(System.Convert.ToString(row["SpeciesCode"]));
-                parameters.FireTolerance[species] = System.Convert.ToDouble(row["FireTolerance"]);
+                parameters.FireTolerance[species] = System.Convert.ToInt32(row["FireTolerance"]);
             }
 
             //----------------------------------------------------------

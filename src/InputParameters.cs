@@ -2,6 +2,7 @@
 
 using Landis.Utilities;
 using System.Collections.Generic;
+using Landis.Core;
 
 
 namespace Landis.Extension.OriginalFire
@@ -19,7 +20,7 @@ namespace Landis.Extension.OriginalFire
             get;set;
         }
 
-        Landis.Library.Parameters.Species.AuxParm<double> FireTolerance { get; }
+        Landis.Library.Parameters.Species.AuxParm<int> FireTolerance { get; }
 
 
         //---------------------------------------------------------------------
@@ -78,12 +79,13 @@ namespace Landis.Extension.OriginalFire
         : IInputParameters
     {
         private int timestep;
+        private ISpeciesDataset speciesDataset;
         private List<IDamageTable> damages;
         private string mapNamesTemplate;
         private string logFileName;
         private string summaryLogFileName;
         private List<IDynamicFireRegion> dynamicFireRegions;
-        private Landis.Library.Parameters.Species.AuxParm<double> fireTolerance;
+        private Library.Parameters.Species.AuxParm<int> fireTolerance;
 
         //---------------------------------------------------------------------
 
@@ -102,7 +104,7 @@ namespace Landis.Extension.OriginalFire
             }
         }
 
-        public Landis.Library.Parameters.Species.AuxParm<double> FireTolerance
+        public Landis.Library.Parameters.Species.AuxParm<int> FireTolerance
         {
             get { return fireTolerance; }
             set { fireTolerance = value; }
@@ -181,10 +183,12 @@ namespace Landis.Extension.OriginalFire
         }
         //---------------------------------------------------------------------
 
-        public InputParameters()
+        public InputParameters(ISpeciesDataset speciesDataset)
         {
+            this.speciesDataset = speciesDataset;
             dynamicFireRegions = new List<IDynamicFireRegion>(0);
             damages = new List<IDamageTable>(0);
+            fireTolerance = new Landis.Library.Parameters.Species.AuxParm<int>(speciesDataset);
         }
     }
 }

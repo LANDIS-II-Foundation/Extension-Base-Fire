@@ -1,0 +1,9 @@
+LandisData   Extension
+
+Name         "Original Fire"
+Version      "5.0"
+Type         disturbance:fire
+Assembly     Landis.Extension.OriginalFire-v5
+Class        Landis.Extension.OriginalFire.PlugIn
+Description  "Fire Disturbance"
+CoreVersion  8.0

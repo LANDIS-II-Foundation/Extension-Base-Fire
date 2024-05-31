@@ -27,7 +27,7 @@ namespace Landis.Extension.OriginalFire
             severity = PlugIn.ModelCore.Landscape.NewSiteVar<byte>();
             disturbed = PlugIn.ModelCore.Landscape.NewSiteVar<bool>();
 
-            cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.AgeCohorts");
+            cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.UniversalCohorts");
 
             PlugIn.ModelCore.RegisterSiteVar(SiteVars.Severity, "Fire.Severity");
             PlugIn.ModelCore.RegisterSiteVar(SiteVars.TimeOfLastFire, "Fire.TimeOfLastEvent");

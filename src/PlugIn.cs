@@ -14,7 +14,7 @@ namespace Landis.Extension.OriginalFire
         : ExtensionMain 
     {
         public static readonly ExtensionType ExtType = new ExtensionType("disturbance:fire");
-        public static readonly string ExtensionName = "Base Fire";
+        public static readonly string ExtensionName = "Original Fire";
 
         private string mapNameTemplate;
         public static MetadataTable<SummaryLog> summaryLog;
@@ -72,7 +72,8 @@ namespace Landis.Extension.OriginalFire
             Event.Initialize(parameters.FireDamages);
 
             modelCore.UI.WriteLine("   Opening and Initializing Fire log files \"{0}\" and \"{1}\"...", parameters.LogFileName, parameters.SummaryLogFileName);
-            
+            SpeciesData.Initialize(parameters);
+
             List<string> colnames = new List<string>();
             foreach (IFireRegion fireregion in FireRegions.Dataset)
             {
@@ -80,10 +81,6 @@ namespace Landis.Extension.OriginalFire
             }
             ExtensionMetadata.ColumnNames = colnames;
             MetadataHandler.InitializeMetadata(Timestep, mapNameTemplate, logFileName, summaryLogFileName);
-            
-            
-            //if (isDebugEnabled)
-               // modelCore.UI.WriteLine("Initialization done");
         }
 
         ///<summary>
