@@ -62,12 +62,12 @@ Source: {#InfoTxt}; DestDir: {#LandisPlugInDir}
 
 
 [Run]
-Filename: {#ExtensionsCmd}; Parameters: "remove ""Base Fire"" "; WorkingDir: {#LandisPlugInDir}
+Filename: {#ExtensionsCmd}; Parameters: "remove ""Original Fire"" "; WorkingDir: {#LandisPlugInDir}
 Filename: {#ExtensionsCmd}; Parameters: "add ""{#InfoTxt}"" "; WorkingDir: {#LandisPlugInDir} 
 
 
 [UninstallRun]
 ; Remove "Age-Only Succession" from "extensions.xml" file.
-Filename: {#ExtensionsCmd}; Parameters: "remove ""Base Fire"" "; WorkingDir: {#LandisPlugInDir}
+Filename: {#ExtensionsCmd}; Parameters: "remove ""Original Fire"" "; WorkingDir: {#LandisPlugInDir}
 
 
