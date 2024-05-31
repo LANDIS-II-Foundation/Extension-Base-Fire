@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <AssemblyVersion>5.0.0.0</AssemblyVersion>
-    <NeutralLanguage>English</NeutralLanguage>
-    <RootNamespace>Landis.Extension.OriginalFire</RootNamespace>
+		<NeutralLanguage>English</NeutralLanguage>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<AssemblyVersion>5.0.0.0</AssemblyVersion>
+		<FileVersion>5.0.0.0</FileVersion>
+		<RootNamespace>Landis.Extension.OriginalFire</RootNamespace>
     <AssemblyName>Landis.Extension.OriginalFire-v5</AssemblyName>
     <AssemblyTitle>Landis.Extension.OriginalFire-v5</AssemblyTitle>
     <PackageLicenseUrl>https://github.com/LANDIS-II-Foundation/Extension-Original-Fire/blob/master/LICENSE</PackageLicenseUrl>
@@ -16,7 +17,6 @@
     <Authors>LANDIS-II Foundation</Authors>
     <Company>LANDIS-II Foundation</Company>
     <Description>Extension that uses the original fire algorithms</Description>
-    <FileVersion>5.0.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,8 +28,10 @@
     </Reference>
     <Reference Include="Landis.Library.Metadata-v2">
       <HintPath>lib\Landis.Library.Metadata-v2.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+		</Reference>
+		<Reference Include="Landis.Library.Parameters-v2">
+		</Reference>
+	</ItemGroup>
 </Project>
 
 

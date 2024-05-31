@@ -2,7 +2,7 @@
 
 using Landis.Utilities;
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
 
     public interface IDynamicFireRegion
@@ -12,7 +12,7 @@ namespace Landis.Extension.BaseFire
     }
 }
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     public class DynamicFireRegion
     : IDynamicFireRegion

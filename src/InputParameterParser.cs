@@ -2,9 +2,11 @@
 
 using Landis.Utilities;
 using System.Collections.Generic;
-using System.Text;
+using System.Data;
+using Landis.Core;
 
-namespace Landis.Extension.BaseFire
+
+namespace Landis.Extension.OriginalFire
 {
     /// <summary>
     /// A parser that reads the plug-in's parameters from text input.
@@ -12,6 +14,9 @@ namespace Landis.Extension.BaseFire
     public class InputParameterParser
         : TextParser<IInputParameters>
     {
+        private ISpeciesDataset speciesDataset;
+        private Dictionary<string, int> speciesLineNums;
+        private InputVar<string> speciesName;
 
         //---------------------------------------------------------------------
         public override string LandisDataValue
@@ -24,7 +29,11 @@ namespace Landis.Extension.BaseFire
         public InputParameterParser()
         {
             // FIXME: Hack to ensure that Percentage is registered with InputValues
-            Landis.Utilities.Percentage p = new Landis.Utilities.Percentage();
+            Percentage p = new Landis.Utilities.Percentage();
+            this.speciesDataset = PlugIn.ModelCore.Species;
+            this.speciesLineNums = new Dictionary<string, int>();
+            this.speciesName = new InputVar<string>("Species");
+
         }
 
         //---------------------------------------------------------------------
@@ -42,11 +51,25 @@ namespace Landis.Extension.BaseFire
             ReadVar(timestep);
             parameters.Timestep = timestep.Value;
 
+            //-------------------------
+            //  Read Species Parameters table
+            PlugIn.ModelCore.UI.WriteLine("   Begin parsing SPECIES table.");
+
+            InputVar<string> csv = new InputVar<string>("Species_CSV_File");
+            ReadVar(csv);
+
+            CSVParser speciesParser = new CSVParser();
+            DataTable speciesTable = speciesParser.ParseToDataTable(csv.Value);
+            foreach (DataRow row in speciesTable.Rows)
+            {
+                ISpecies species = ReadSpecies(System.Convert.ToString(row["SpeciesCode"]));
+                parameters.FireTolerance[species] = System.Convert.ToDouble(row["FireTolerance"]);
+            }
+
             //----------------------------------------------------------
             // First, read table of additional parameters for ecoregions
             PlugIn.ModelCore.UI.WriteLine("   Loading FireRegion data...");
             
-            //IEditableFireRegionDataset dataset = new EditableFireRegionDataset();
             List<IFireRegion> dataset = new List<IFireRegion>(0);
             
             Dictionary <string, int> nameLineNumbers = new Dictionary<string, int>();
@@ -375,5 +398,23 @@ namespace Landis.Extension.BaseFire
 
             return ecoregion;
         }
+        //---------------------------------------------------------------------
+        private ISpecies ReadSpecies(string speciesName)
+        {
+            ISpecies species = speciesDataset[speciesName];
+            if (species == null)
+                throw new InputValueException(speciesName,
+                                              "{0} is not a species name.",
+                                              speciesName);
+            int lineNumber;
+            if (speciesLineNums.TryGetValue(species.Name, out lineNumber))
+                throw new InputValueException(speciesName,
+                                              "The species {0} was previously used on line {1}",
+                                              speciesName, lineNumber);
+            else
+                speciesLineNums[species.Name] = LineNumber;
+            return species;
+        }
+
     }
 }

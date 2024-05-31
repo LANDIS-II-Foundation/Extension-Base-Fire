@@ -1,6 +1,6 @@
 ﻿using Landis.Library.Metadata;
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     public class SummaryLog
     {

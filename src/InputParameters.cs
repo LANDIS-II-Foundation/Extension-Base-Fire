@@ -4,7 +4,7 @@ using Landis.Utilities;
 using System.Collections.Generic;
 
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     /// <summary>
     /// Parameters for the plug-in.
@@ -18,6 +18,9 @@ namespace Landis.Extension.BaseFire
         {
             get;set;
         }
+
+        Landis.Library.Parameters.Species.AuxParm<double> FireTolerance { get; }
+
 
         //---------------------------------------------------------------------
         /// <summary>
@@ -61,12 +64,12 @@ namespace Landis.Extension.BaseFire
         {
             get;
         }
-        
+
     }
 }
 
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     /// <summary>
     /// Parameters for the plug-in.
@@ -80,6 +83,7 @@ namespace Landis.Extension.BaseFire
         private string logFileName;
         private string summaryLogFileName;
         private List<IDynamicFireRegion> dynamicFireRegions;
+        private Landis.Library.Parameters.Species.AuxParm<double> fireTolerance;
 
         //---------------------------------------------------------------------
 
@@ -96,6 +100,12 @@ namespace Landis.Extension.BaseFire
                     throw new InputValueException(value.ToString(), "Value must be = or > 0.");
                 timestep = value;
             }
+        }
+
+        public Landis.Library.Parameters.Species.AuxParm<double> FireTolerance
+        {
+            get { return fireTolerance; }
+            set { fireTolerance = value; }
         }
 
         //---------------------------------------------------------------------

@@ -1,15 +1,11 @@
 //  Authors:  Robert M. Scheller, James B. Domingo
 
-using Landis.Library.AgeOnlyCohorts;
 using Landis.Core;
 using Landis.SpatialModeling;
 using System.Collections.Generic;
-using System.IO;
 using Landis.Library.Metadata;
-using System;
-using System.Diagnostics;
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     ///<summary>
     /// A disturbance plug-in that simulates Fire disturbance.
@@ -46,7 +42,12 @@ namespace Landis.Extension.BaseFire
                 return modelCore;
             }
         }
-        
+        public override void AddCohortData()
+        {
+            return;
+        }
+
+
         //---------------------------------------------------------------------
 
         public override void LoadParameters(string dataFile, ICore mCore)

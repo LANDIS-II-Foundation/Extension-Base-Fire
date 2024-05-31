@@ -2,10 +2,10 @@
 
 using Landis.Core;
 using Landis.SpatialModeling;
-using Landis.Library.AgeOnlyCohorts;
+using Landis.Library.UniversalCohorts;
 
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     public static class SiteVars
     {
@@ -120,8 +120,8 @@ namespace Landis.Extension.BaseFire
             {
                 foreach (ICohort cohort in speciesCohorts)
                 {
-                        if (cohort.Age > max)
-                            max = cohort.Age;
+                        if (cohort.Data.Age > max)
+                            max = cohort.Data.Age;
                 }
             }
             return max;

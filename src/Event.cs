@@ -1,15 +1,15 @@
 //  Authors:    Robert M. Scheller, James B. Domingo
 
 using Landis.Core;
-using Landis.Library.AgeOnlyCohorts;
+using Landis.Library.UniversalCohorts;
 using Landis.SpatialModeling;
 using System.Collections.Generic;
 //using Troschuetz.Random;
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     public class Event
-        : ICohortDisturbance
+        : IDisturbance
     {
         private static RelativeLocation[] neighborhood;
         private static List<IDamageTable> damages;
@@ -261,7 +261,7 @@ namespace Landis.Extension.BaseFire
                     totalSiteSeverities += siteSeverity;
                     SiteVars.Disturbed[currentSite] = true;
 
-                    siteCohortsKilled = KillSiteCohorts(currentSite);
+                    siteCohortsKilled = Damage(currentSite);
                     if (siteCohortsKilled > 0) 
                     {
                         totalSitesDamaged++;
@@ -403,10 +403,10 @@ namespace Landis.Extension.BaseFire
 
         //---------------------------------------------------------------------
 
-        private int KillSiteCohorts(ActiveSite site)
+        private int Damage(ActiveSite site)
         {
             int previousCohortsKilled = this.cohortsKilled;
-            SiteVars.Cohorts[site].RemoveMarkedCohorts(this);
+            SiteVars.Cohorts[site].ReduceOrKillCohorts(this);
             return this.cohortsKilled - previousCohortsKilled;
         }
 
@@ -414,24 +414,23 @@ namespace Landis.Extension.BaseFire
 
         //  A filter to determine which cohorts are removed.
 
-        bool ICohortDisturbance.MarkCohortForDeath(ICohort cohort) 
+        //bool ICohortDisturbance.MarkCohortForDeath(ICohort cohort) 
+        int IDisturbance.ReduceOrKillMarkedCohort(ICohort cohort)
         {
             bool killCohort = false;
 
             //Fire Severity 5 kills all cohorts:
             if (siteSeverity == 5) 
             {
-                //logger.Debug(string.Format("  cohort {0}:{1} killed, severity =5", cohort.Species.Name, cohort.Age));
                 killCohort = true;
             }
             else {
                 //Otherwise, use damage table to calculate damage.
                 //Read table backwards; most severe first.
-                float ageAsPercent = (float) cohort.Age / (float) cohort.Species.Longevity;
-                //PlugIn.ModelCore.Log.WriteLine("Cohort = {0} {1}.", cohort.Age, cohort.Species.Name);
+                float ageAsPercent = (float) cohort.Data.Age / (float) cohort.Species.Longevity;
                 foreach(IDamageTable damage in damages)
                 {
-                    if (siteSeverity - cohort.Species.FireTolerance >= damage.SeverTolerDifference) 
+                    if (siteSeverity - SpeciesData.FireTolerance[cohort.Species] >= damage.SeverTolerDifference) 
                     {
                         if ((float)damage.MaxAge.Value >= ageAsPercent)
                         {
@@ -444,8 +443,9 @@ namespace Landis.Extension.BaseFire
 
             if (killCohort) {
                 this.cohortsKilled++;
+                return cohort.Data.Biomass;
             }
-            return killCohort;
+            return 0;
         }
     }
 }

@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-//using System.Data;
-using System.Text;
 using Landis.Library.Metadata;
-using Landis.Core;
-using Landis.Utilities;
 using System.IO;
-using Landis.Utilities;
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     public static class MetadataHandler
     {
