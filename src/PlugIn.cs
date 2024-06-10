@@ -73,8 +73,8 @@ namespace Landis.Extension.OriginalFire
             FireRegions.ReadMap(parameters.InitialFireRegions);
 
             ModelCore.UI.WriteLine("   Opening and Initializing Fire log files \"{0}\" and \"{1}\"...", parameters.FireEventLogFileName, parameters.FireSummaryLogFileName);
-            ExtensionMetadata.ColumnNames = colnames;
-            MetadataHandler.InitializeMetadata(Timestep, mapNameTemplate, parameters.FireEventLogFileName, parameters.FireSummaryLogFileName);
+            //ExtensionMetadata.ColumnNames = colnames;
+            MetadataHandler.InitializeFireMetadata(Timestep, mapNameTemplate, parameters.FireEventLogFileName, parameters.FireSummaryLogFileName);
         }
 
         ///<summary>
@@ -149,34 +149,35 @@ namespace Landis.Extension.OriginalFire
             if (FireEvent.Severity > 0)
             {
                 FireEventLog.Clear();
-                FireEventsLog el = new FireEventsLog();
-                el.Time = currentTime;
-                el.Row = FireEvent.StartLocation.Row;
-                el.Column = FireEvent.StartLocation.Column;
-                el.SitesChecked = FireEvent.NumSiteChecked;
-                el.CohortsKilled = FireEvent.CohortsKilled;
-                el.Severity = FireEvent.Severity;
-                int[] fireSites = new int[FireRegions.Dataset.Count];
-                int i = 0;
+                FireEventsLog fire_el = new FireEventsLog();
 
-                foreach (IFireRegion fireregion in FireRegions.Dataset)
-                {
-                    fireSites[i] = FireEvent.SitesInEvent[fireregion.Index];
-                    i = i + 1;
-                    totalSitesInEvent += FireEvent.SitesInEvent[fireregion.Index];
-                    summaryFireRegionEventCount[fireregion.Index] += FireEvent.SitesInEvent[fireregion.Index];
-                }
-                el.SitesEventByEcoregion = new double[fireSites.Length];
-                i = 0;
-                while(i < fireSites.Length)
-                {
-                    el.SitesEventByEcoregion[i] = fireSites[i];
-                    ++i;
-                }
+                fire_el.Time = currentTime;
+                fire_el.Row = FireEvent.StartLocation.Row;
+                fire_el.Column = FireEvent.StartLocation.Column;
+                fire_el.SitesChecked = FireEvent.NumSiteChecked;
+                fire_el.CohortsKilled = FireEvent.CohortsKilled;
+                fire_el.Severity = FireEvent.Severity;
+                //int[] fireSites = new int[FireRegions.Dataset.Count];
+                //int i = 0;
+
+                //foreach (IFireRegion fireregion in FireRegions.Dataset)
+                //{
+                //    fireSites[i] = FireEvent.SitesInEvent[fireregion.Index];
+                //    i = i + 1;
+                //    totalSitesInEvent += FireEvent.SitesInEvent[fireregion.Index];
+                //    summaryFireRegionEventCount[fireregion.Index] += FireEvent.SitesInEvent[fireregion.Index];
+                //}
+                //el.SitesEventByEcoregion = new double[fireSites.Length];
+                //i = 0;
+                //while(i < fireSites.Length)
+                //{
+                //    el.SitesEventByEcoregion[i] = fireSites[i];
+                //    ++i;
+                //}
 
                 summaryTotalSites += totalSitesInEvent;
-                el.BurnedSites = totalSitesInEvent;
-                FireEventLog.AddObject(el);
+                fire_el.BurnedSites = totalSitesInEvent;
+                FireEventLog.AddObject(fire_el);
                 FireEventLog.WriteToFile();
             }
         }
@@ -191,17 +192,17 @@ namespace Landis.Extension.OriginalFire
             sl.TotalSitesBurned = summaryTotalSites;
             sl.NumberFires = summaryEventCount;
 
-            int[] summaryFireCount = new int[FireRegions.Dataset.Count];
-            foreach (IFireRegion ecoregion in FireRegions.Dataset)
-            {
-                summaryFireCount[ecoregion.Index] = summaryFireRegionEventCount[ecoregion.Index];
-            }
+            //int[] summaryFireCount = new int[FireRegions.Dataset.Count];
+            //foreach (IFireRegion ecoregion in FireRegions.Dataset)
+            //{
+            //    summaryFireCount[ecoregion.Index] = summaryFireRegionEventCount[ecoregion.Index];
+            //}
 
-            sl.EcoCounts_ = new double[summaryFireCount.Length];
-            for(int i = 0; i < sl.EcoCounts_.Length; i++)
-            {
-                sl.EcoCounts_[i] = summaryFireCount[i];
-            }
+            //sl.EcoCounts_ = new double[summaryFireCount.Length];
+            //for(int i = 0; i < sl.EcoCounts_.Length; i++)
+            //{
+            //    sl.EcoCounts_[i] = summaryFireCount[i];
+            //}
 
             FireSummaryLog.AddObject(sl);
             FireSummaryLog.WriteToFile();

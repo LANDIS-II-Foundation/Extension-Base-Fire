@@ -7,9 +7,9 @@ namespace Landis.Extension.OriginalFire
     public static class MetadataHandler
     {
         
-        public static ExtensionMetadata Extension { get; set; }
+        public static ExtensionMetadata FireExtension { get; set; }
 
-        public static void InitializeMetadata(int Timestep, string MapFileName, string eventLogName, string summaryLogName)
+        public static void InitializeFireMetadata(int Timestep, string MapFileName, string eventLogName, string summaryLogName)
         {
             
             ScenarioReplicationMetadata scenRep = new ScenarioReplicationMetadata()
@@ -19,7 +19,7 @@ namespace Landis.Extension.OriginalFire
                 TimeMax = PlugIn.ModelCore.EndTime,
             };
 
-            Extension = new ExtensionMetadata(PlugIn.ModelCore)
+            FireExtension = new ExtensionMetadata(PlugIn.ModelCore)
             {
                 Name = PlugIn.ExtensionName,
                 TimeInterval = Timestep, 
@@ -46,7 +46,7 @@ namespace Landis.Extension.OriginalFire
             };
 
             tblOut_events.RetriveFields(typeof(FireEventsLog));
-            Extension.OutputMetadatas.Add(tblOut_events);
+            FireExtension.OutputMetadatas.Add(tblOut_events);
 
             PlugIn.ModelCore.UI.WriteLine("   Generating summary table...");
             OutputMetadata tblOut_summary = new OutputMetadata()
@@ -58,7 +58,7 @@ namespace Landis.Extension.OriginalFire
             };
 
             tblOut_summary.RetriveFields(typeof(SummaryLog));
-            Extension.OutputMetadatas.Add(tblOut_summary);
+            FireExtension.OutputMetadatas.Add(tblOut_summary);
 
             //---------------------------------------            
             //          map outputs:         
@@ -72,13 +72,13 @@ namespace Landis.Extension.OriginalFire
                 Map_DataType = MapDataType.Continuous,
                 Visualize = true,
             };
-            Extension.OutputMetadatas.Add(mapOut_FireSeverity);
+            FireExtension.OutputMetadatas.Add(mapOut_FireSeverity);
 
             //---------------------------------------
-            MetadataProvider mp = new MetadataProvider(Extension);
-            mp.WriteMetadataToXMLFile("Metadata", Extension.Name, Extension.Name);
+            MetadataProvider mp = new MetadataProvider(FireExtension);
+            mp.WriteMetadataToXMLFile("Metadata", FireExtension.Name, FireExtension.Name);
         }
-        public static void CreateDirectory(string path)
+        private static void CreateDirectory(string path)
         {
             path = path.Trim(null);
             

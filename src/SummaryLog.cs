@@ -14,7 +14,7 @@ namespace Landis.Extension.OriginalFire
         [DataFieldAttribute(Desc = "Event Count")]
         public int NumberFires { set; get; }
 
-        [DataFieldAttribute(Desc = "Fire Region Event Count by Ecoregion", ColumnList = true)]
-        public double[] EcoCounts_ { set; get; }
+        //[DataFieldAttribute(Desc = "Fire Region Event Count by Ecoregion", ColumnList = true)]
+        //public double[] EcoCounts_ { set; get; }
     }
 }
