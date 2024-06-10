@@ -19,7 +19,7 @@ Species_CSV_File OriginalFire_Spp_Table.csv
 >> INPUT MAP
 >>----------------------
 
-InitialFireRegionsMap	./ecoregions.tif
+InitialFireRegionsMap	ecoregions.tif
 
 
 
@@ -27,10 +27,10 @@ InitialFireRegionsMap	./ecoregions.tif
 >> FIRE SEVERITY PARAMETERS
 >> ---------------------------
 
->>  DynamicFireRegionTable		<< Optional (uncomment to select) 
+  DynamicFireRegionTable		<< Optional (uncomment to select) 
 >> Year		FileName
 >> ----		--------
->>   20		ecoregions.tif		<< Optional (uncomment to select)
+   20		ecoregions.tif		<< Optional (uncomment to select)
 
 
   FuelCurveTable
@@ -65,6 +65,6 @@ InitialFireRegionsMap	./ecoregions.tif
 >> ---------------
 >> OUTPUTS
 >> -------------
-MapNames	fire/base-fire-severity-{timestep}.tif
-LogFile		fire/base-fire-log.csv
-SummaryLogFile 	fire/base-fire-summary-log.csv
+MapNames	fire/original-fire-severity-{timestep}.tif
+LogFile		fire/original-fire-log.csv
+SummaryLogFile 	fire/original-fire-summary-log.csv

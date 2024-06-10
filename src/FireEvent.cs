@@ -4,11 +4,10 @@ using Landis.Core;
 using Landis.Library.UniversalCohorts;
 using Landis.SpatialModeling;
 using System.Collections.Generic;
-//using Troschuetz.Random;
 
 namespace Landis.Extension.OriginalFire
 {
-    public class Event
+    public class FireEvent
         : IDisturbance
     {
         private static RelativeLocation[] neighborhood;
@@ -26,7 +25,7 @@ namespace Landis.Extension.OriginalFire
 
         //---------------------------------------------------------------------
 
-        static Event()
+        static FireEvent()
         {
             neighborhood = new RelativeLocation[] 
             {
@@ -107,7 +106,7 @@ namespace Landis.Extension.OriginalFire
 
         public static void Initialize(List<IDamageTable>  damages)
         {
-            Event.damages = damages;
+            FireEvent.damages = damages;
         }
 
         //---------------------------------------------------------------------
@@ -130,7 +129,7 @@ namespace Landis.Extension.OriginalFire
 
         //---------------------------------------------------------------------
 
-        public static Event Initiate(ActiveSite site,
+        public static FireEvent Initiate(ActiveSite site,
                                      int        currentTime,
                                      int        timestep)
         {
@@ -147,7 +146,7 @@ namespace Landis.Extension.OriginalFire
                 && PlugIn.ModelCore.GenerateUniform() <= ComputeFireInitSpreadProb(site, currentTime)
                 && CalcSeverity(site, currentTime) > 0) 
             {
-                Event FireEvent = new Event(site);
+                FireEvent FireEvent = new FireEvent(site);
                 FireEvent.Spread(currentTime);
                 return FireEvent;
             }
@@ -181,7 +180,7 @@ namespace Landis.Extension.OriginalFire
 
         //---------------------------------------------------------------------
 
-        private Event(ActiveSite initiationSite)
+        private FireEvent(ActiveSite initiationSite)
         {
             this.initiationSite = initiationSite;
             this.sitesInEvent = new int[FireRegions.Dataset.Count];

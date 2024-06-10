@@ -21,7 +21,7 @@ namespace Landis.Extension.OriginalFire
         }
 
         Landis.Library.Parameters.Species.AuxParm<int> FireTolerance { get; }
-
+        string InitialFireRegions { get; set; }
 
         //---------------------------------------------------------------------
         /// <summary>
@@ -47,7 +47,7 @@ namespace Landis.Extension.OriginalFire
         /// <summary>
         /// Name of log file.
         /// </summary>
-        string LogFileName
+        string FireEventLogFileName
         {
             get;set;
         }
@@ -56,7 +56,7 @@ namespace Landis.Extension.OriginalFire
         /// <summary>
         /// Name of Summary log file.
         /// </summary>
-        string SummaryLogFileName
+        string FireSummaryLogFileName
         {
             get;set;
         }
@@ -108,6 +108,7 @@ namespace Landis.Extension.OriginalFire
         /// Definitions of Fire severities.
         /// </summary>
         public List<IDamageTable> FireDamages { get; }
+        public string InitialFireRegions { get; set; }
 
         //---------------------------------------------------------------------
 
@@ -132,7 +133,7 @@ namespace Landis.Extension.OriginalFire
         /// <summary>
         /// Name of log file.
         /// </summary>
-        public string LogFileName
+        public string FireEventLogFileName
         {
             get {
                 return logFileName;
@@ -149,7 +150,7 @@ namespace Landis.Extension.OriginalFire
         /// <summary>
         /// Name of log file.
         /// </summary>
-        public string SummaryLogFileName
+        public string FireSummaryLogFileName
         {
             get {
                 return summaryLogFileName;

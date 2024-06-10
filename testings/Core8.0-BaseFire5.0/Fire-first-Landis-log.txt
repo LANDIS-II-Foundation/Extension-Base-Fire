@@ -1,0 +1,71 @@
+2024-06-10 11:57:18,974 - LANDIS-II 8.0 (8)
+2024-06-10 11:57:18,977 - 
+2024-06-10 11:57:19,023 - Loading scenario from file "scenario.txt" ...
+2024-06-10 11:57:19,052 - Initialized random number generator with seed = 3,602,512,599
+2024-06-10 11:57:19,053 - Loading species data from file "Core_species_data.txt" ...
+2024-06-10 11:57:19,058 - Loading ecoregions from file "./ecoregions.txt" ...
+2024-06-10 11:57:19,068 - Core metadata:
+2024-06-10 11:57:19,068 - LANDIS-II v8.0, Seed: , ./ecoregions.tif, ./ecoregions.txt, Core_species_data.txt
+Succession:
+Biomass Succession Version: 7.0.0, Input: biomass-succession.txt
+Disturbance Extensions:
+Original Fire Version: 5.0, Input: original-fire.txt
+Original Wind Version: 4.0, Input: original-wind.txt
+Other Extensions:
+
+2024-06-10 11:57:19,071 - Initializing landscape from ecoregions map "./ecoregions.tif" ...
+2024-06-10 11:57:19,081 - Cell length = 100 m, cell area = 1 ha
+2024-06-10 11:57:19,082 - Map dimensions: 99 rows by 99 columns = 9,801 cells
+2024-06-10 11:57:19,089 - Sites: 9,801 active (100.0%), 0 inactive (0.0%)
+2024-06-10 11:57:19,095 - Loading Biomass Succession extension ...
+2024-06-10 11:57:19,105 -    Registering Data:  Succession.UniversalCohorts.
+2024-06-10 11:57:19,106 -    Registering Data:  Succession.WoodyDebris.
+2024-06-10 11:57:19,107 -    Registering Data:  Succession.Litter.
+2024-06-10 11:57:19,108 -    Registering Data:  Succession.MaxBiomass.
+2024-06-10 11:57:19,136 -    Begin reading FIRE REDUCTION parameters.
+2024-06-10 11:57:19,137 -    Begin reading HARVEST REDUCTION parameters.
+2024-06-10 11:57:19,156 -    Loading weather data ...
+2024-06-10 11:57:22,760 -    Generating summary table...
+2024-06-10 11:57:22,763 -    Registering Data:  TimeOfLastSuccession.
+2024-06-10 11:57:22,766 -    Registering Data:  Shade.
+2024-06-10 11:57:22,767 -    Creating Dispersal Neighborhood List.
+2024-06-10 11:57:22,768 -    Dispersal:  NeighborRadius=5050, CellLength=100, numCellRadius=50
+2024-06-10 11:57:22,786 -    Loading initial communities from file "biomass-succession_InitialCommunities.csv" ...
+2024-06-10 11:57:22,795 -    Reading initial communities map "Initial-Communities.tif" ...
+2024-06-10 11:57:22,995 - Loading Original Fire extension ...
+2024-06-10 11:57:22,997 -    Registering Data:  Fire.Severity.
+2024-06-10 11:57:23,000 -    Registering Data:  Fire.TimeOfLastEvent.
+2024-06-10 11:57:23,036 -    Begin parsing SPECIES table.
+2024-06-10 11:57:23,039 -    Loading FireRegion data...
+2024-06-10 11:57:23,047 - Loading Original Wind extension ...
+2024-06-10 11:57:23,052 -    Opening and Initializing Fire log files "fire/original-fire-log.csv" and "fire/original-fire-summary-log.csv"...
+2024-06-10 11:57:23,054 -    Generating event table...
+2024-06-10 11:57:23,055 -    Generating summary table...
+2024-06-10 11:57:23,059 -    Registering Data:  Wind.TimeOfLastEvent.
+2024-06-10 11:57:23,059 -    Registering Data:  Wind.Severity.
+2024-06-10 11:57:23,060 -    Opening and Initializing wind log files "wind/wind-events-log.csv" and "wind/wind-summary-log.csv"...
+2024-06-10 11:57:23,063 -    Generating wind event table...
+2024-06-10 11:57:23,063 -    Generating wind summary table...
+2024-06-10 11:57:23,066 - Using the following extensions ...
+   Extension Name            Extension Filename       
+   --------------            ------------------       
+   Biomass Succession        biomass-succession.txt   
+   Original Fire             original-fire.txt        
+   Original Wind             original-wind.txt        
+
+2024-06-10 11:57:23,069 - Current time: 5
+2024-06-10 11:57:23,069 - Running Original Fire ...
+2024-06-10 11:57:23,070 -    Processing landscape for Fire events ...
+2024-06-10 11:57:23,089 - Internal error occurred within the program:
+2024-06-10 11:57:23,089 -   'column' argument cannot be null. (Parameter 'column')
+2024-06-10 11:57:23,090 - 
+2024-06-10 11:57:23,090 - Stack trace:
+2024-06-10 11:57:23,104 -    at System.Data.DataRow.set_Item(DataColumn column, Object value)
+   at Landis.Library.Metadata.DataTableExtensions.AddDataObject(DataTable tbl, Object dataObject)
+   at Landis.Library.Metadata.DataTableExtensions.AppendDataObjects(DataTable tbl, IEnumerable dataObjects)
+   at Landis.Library.Metadata.MetadataTable`1.WriteToFile()
+   at Landis.Extension.OriginalFire.PlugIn.LogEvent(Int32 currentTime, Event FireEvent) in C:\Users\rschell\Documents\GitHub\Extension-Base-Fire\src\PlugIn.cs:line 186
+   at Landis.Extension.OriginalFire.PlugIn.Run() in C:\Users\rschell\Documents\GitHub\Extension-Base-Fire\src\PlugIn.cs:line 120
+   at Landis.Model.Run(ExtensionMain extension)
+   at Landis.Model.Run(String scenarioPath, IUserInterface ui)
+   at Landis.App.Main(String[] args) in C:\GitHub\Core-Model-v8\Tool-Console\src\App.cs:line 99

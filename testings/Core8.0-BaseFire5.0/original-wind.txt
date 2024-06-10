@@ -1,4 +1,4 @@
-LandisData  "Base Wind"
+LandisData  "Original Wind"
 
 Timestep  5
 
@@ -10,8 +10,8 @@ Timestep  5
 >>             ___ Event Size ___   Rotation
 >> Ecoregion    Max   Mean    Min   Period
 >> ---------   ----   ----   ----   --------
-    eco1        400    100      4     100
-    eco2        600    200      6      50
+    101        400    100      4     100
+    102        600    200      6      50
 
 
 >>-----------------------------------
@@ -34,5 +34,6 @@ WindSeverities
 >> OUTPUTS
 >>-------------
 
-MapNames 	wind/severity-{timestep}.img
-LogFile		wind/wind-events-log.csv
+MapNames 	wind/severity-{timestep}.tif
+SummaryLogFile		wind/wind-summary-log.csv
+EventLogFile	wind/wind-events-log.csv

@@ -147,7 +147,7 @@ namespace Landis.Extension.OriginalFire
             
             InputVar<string> ecoregionsMap = new InputVar<string>("InitialFireRegionsMap");
             ReadVar(ecoregionsMap);
-            FireRegions.ReadMap(ecoregionsMap.Value);
+            parameters.InitialFireRegions = ecoregionsMap.Value;
 
             //----------------------------------------------------------
             // Read in the table of dynamic ecoregions:
@@ -156,7 +156,6 @@ namespace Landis.Extension.OriginalFire
             
             if (ReadOptionalName(DynamicFireRegionTable)) 
             {
-            //ReadName(DynamicFireRegionTable);
 
                 InputVar<string> mapName = new InputVar<string>("Dynamic Map Name");
                 InputVar<int> year = new InputVar<int>("Year to read in new FireRegion Map");
@@ -354,11 +353,11 @@ namespace Landis.Extension.OriginalFire
 
             InputVar<string> logFile = new InputVar<string>("LogFile");
             ReadVar(logFile);
-            parameters.LogFileName = logFile.Value;
+            parameters.FireEventLogFileName = logFile.Value;
 
             InputVar<string> summaryLogFile = new InputVar<string>("SummaryLogFile");
             ReadVar(summaryLogFile);
-            parameters.SummaryLogFileName = summaryLogFile.Value;
+            parameters.FireSummaryLogFileName = summaryLogFile.Value;
 
             CheckNoDataAfter(string.Format("the {0} parameter", summaryLogFile.Name));
 

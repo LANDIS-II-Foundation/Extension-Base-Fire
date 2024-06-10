@@ -9,9 +9,9 @@ Timestep  			10
 
 SeedingAlgorithm  		WardSeedDispersal
 
-InitialCommunities      	./biomass-succession_InitialCommunities.csv
+InitialCommunities      	biomass-succession_InitialCommunities.csv
 InitialCommunitiesMap   	Initial-Communities.tif
-ClimateConfigFile		./biomass-succession_ClimateGenerator.txt
+ClimateConfigFile		biomass-succession_ClimateGenerator.txt
 
 >> CalibrateMode 		yes
 
@@ -62,6 +62,8 @@ FireReductionParameters
 	1		0.0		0.5	
 	2		0.0		0.75	
 	3		0.0		1.0	
+	4		0.0		1.0	
+	5		0.0		1.0	
 
 HarvestReductionParameters
 >>	Name		WoodLitter	Litter	Cohort		Cohort

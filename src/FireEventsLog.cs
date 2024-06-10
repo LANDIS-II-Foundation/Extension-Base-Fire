@@ -2,7 +2,7 @@
 
 namespace Landis.Extension.OriginalFire
 {
-    public class EventsLog
+    public class FireEventsLog
     {
 
         [DataFieldAttribute(Unit = FieldUnits.Year, Desc = "Time")]
@@ -24,7 +24,7 @@ namespace Landis.Extension.OriginalFire
         public double Severity { set; get; }
 
         [DataFieldAttribute(Desc = "Sites in Fire Event by Ecoregion", ColumnList = true)]
-        public double[] SitesEvent { set; get; }
+        public double[] SitesEventByEcoregion { set; get; }
 
         [DataFieldAttribute(Desc = "Total Burned Sites")]
         public int BurnedSites { set; get; }

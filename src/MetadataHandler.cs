@@ -22,7 +22,7 @@ namespace Landis.Extension.OriginalFire
             Extension = new ExtensionMetadata(PlugIn.ModelCore)
             {
                 Name = PlugIn.ExtensionName,
-                TimeInterval = Timestep, //change this to PlugIn.TimeStep for other extensions
+                TimeInterval = Timestep, 
                 ScenarioReplicationMetadata = scenRep
             };
 
@@ -32,11 +32,8 @@ namespace Landis.Extension.OriginalFire
             CreateDirectory(eventLogName);
             CreateDirectory(summaryLogName);
 
-            PlugIn.eventLog = new MetadataTable<EventsLog>(eventLogName);
-            PlugIn.summaryLog = new MetadataTable<SummaryLog>(summaryLogName);
-
-            //PlugIn.eventLog = new MetadataTable<EventsLog>("Fire-event-log.csv");
-            //PlugIn.summaryLog = new MetadataTable<SummaryLog>("Fire-summary-log.csv");
+            PlugIn.FireEventLog = new MetadataTable<FireEventsLog>(eventLogName);
+            PlugIn.FireSummaryLog = new MetadataTable<SummaryLog>(summaryLogName);
 
             PlugIn.ModelCore.UI.WriteLine("   Generating event table...");
 
@@ -44,11 +41,11 @@ namespace Landis.Extension.OriginalFire
             {
                 Type = OutputType.Table,
                 Name = "FireEventsLog",
-                FilePath = PlugIn.eventLog.FilePath,
+                FilePath = PlugIn.FireEventLog.FilePath,
                 Visualize = false,
             };
 
-            tblOut_events.RetriveFields(typeof(EventsLog));
+            tblOut_events.RetriveFields(typeof(FireEventsLog));
             Extension.OutputMetadatas.Add(tblOut_events);
 
             PlugIn.ModelCore.UI.WriteLine("   Generating summary table...");
@@ -56,7 +53,7 @@ namespace Landis.Extension.OriginalFire
             {
                 Type = OutputType.Table,
                 Name = "FireSummaryLog",
-                FilePath = PlugIn.summaryLog.FilePath,
+                FilePath = PlugIn.FireSummaryLog.FilePath,
                 Visualize = true,
             };
 
@@ -67,18 +64,6 @@ namespace Landis.Extension.OriginalFire
             //          map outputs:         
             //---------------------------------------
 
-            //OutputMetadata mapOut_BiomassRemoved = new OutputMetadata()
-            //{
-            //    Type = OutputType.Map,
-            //    Name = "biomass removed",
-            //    FilePath = @HarvestMapName,
-            //    Map_DataType = MapDataType.Continuous,
-            //    Map_Unit = FieldUnits.Mg_ha,
-            //    Visualize = true,
-            //};
-            //Extension.OutputMetadatas.Add(mapOut_BiomassRemoved);
-            
-
             OutputMetadata mapOut_FireSeverity = new OutputMetadata()
             {
                 Type = OutputType.Map,
@@ -86,7 +71,6 @@ namespace Landis.Extension.OriginalFire
                 FilePath = MapNames.ReplaceTemplateVars(MapFileName, Timestep),
                 Map_DataType = MapDataType.Continuous,
                 Visualize = true,
-                //Map_Unit = "categorical",
             };
             Extension.OutputMetadatas.Add(mapOut_FireSeverity);
 

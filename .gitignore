@@ -248,3 +248,23 @@ testings/Core8.0-BaseFire5.0/Metadata/Original Fire/FireEventsLog_Metadata.xml
 testings/Core8.0-BaseFire5.0/Metadata/Original Fire/FireSummaryLog_Metadata.xml
 testings/Core8.0-BaseFire5.0/Metadata/Original Fire/Original Fire.xml
 testings/Core8.0-BaseFire5.0/fire/base-fire-log.csv
+testings/Core8.0-BaseFire5.0/Metadata/Original Wind/Original Wind.xml
+testings/Core8.0-BaseFire5.0/Metadata/Original Wind/WindLog_Metadata.xml
+testings/Core8.0-BaseFire5.0/Metadata/Original Wind/WindSummaryLog_Metadata.xml
+testings/Core8.0-BaseFire5.0/wind/severity-10.tif
+testings/Core8.0-BaseFire5.0/wind/severity-5.tif
+testings/Core8.0-BaseFire5.0/wind/wind-events-log.csv
+testings/Core8.0-BaseFire5.0/wind/wind-summary-log.csv
+testings/Core8.0-BaseFire5.0/fire/original-fire-severity-10.tif
+testings/Core8.0-BaseFire5.0/fire/original-fire-severity-15.tif
+testings/Core8.0-BaseFire5.0/fire/original-fire-severity-20.tif
+testings/Core8.0-BaseFire5.0/fire/original-fire-severity-25.tif
+testings/Core8.0-BaseFire5.0/fire/original-fire-severity-30.tif
+testings/Core8.0-BaseFire5.0/fire/original-fire-severity-5.tif
+testings/Core8.0-BaseFire5.0/fire/original-fire-summary-log.csv
+testings/Core8.0-BaseFire5.0/fire/original-fire-log.csv
+testings/Core8.0-BaseFire5.0/Metadata/Original Wind/WindEventLog_Metadata.xml
+testings/Core8.0-BaseFire5.0/wind/severity-15.tif
+testings/Core8.0-BaseFire5.0/wind/severity-20.tif
+testings/Core8.0-BaseFire5.0/wind/severity-25.tif
+testings/Core8.0-BaseFire5.0/wind/severity-30.tif

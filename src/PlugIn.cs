@@ -17,15 +17,14 @@ namespace Landis.Extension.OriginalFire
         public static readonly string ExtensionName = "Original Fire";
 
         private string mapNameTemplate;
-        public static MetadataTable<SummaryLog> summaryLog;
-        public static MetadataTable<EventsLog> eventLog;
+        public static MetadataTable<SummaryLog> FireSummaryLog;
+        public static MetadataTable<FireEventsLog> FireEventLog;
         private int[] summaryFireRegionEventCount;
         private int summaryTotalSites;
         private int summaryEventCount;
         private List<IDynamicFireRegion> dynamicEcos;
         private IInputParameters parameters;
-        private static ICore modelCore;
-        
+
         //---------------------------------------------------------------------
 
         public PlugIn()
@@ -35,13 +34,7 @@ namespace Landis.Extension.OriginalFire
 
         //---------------------------------------------------------------------
 
-        public static ICore ModelCore
-        {
-            get
-            {
-                return modelCore;
-            }
-        }
+        public static ICore ModelCore { get; private set; }
         public override void AddCohortData()
         {
             return;
@@ -52,8 +45,7 @@ namespace Landis.Extension.OriginalFire
 
         public override void LoadParameters(string dataFile, ICore mCore)
         {
-            modelCore = mCore;
-            SiteVars.Initialize();
+            ModelCore = mCore;
             InputParameterParser parser = new InputParameterParser();
             parameters = Landis.Data.Load<IInputParameters>(dataFile, parser);
         }
@@ -62,16 +54,14 @@ namespace Landis.Extension.OriginalFire
 
         public override void Initialize()
         {
+            PlugIn.ModelCore.UI.WriteLine("Initializing Original Fire ...");
             Timestep = parameters.Timestep;
             mapNameTemplate = parameters.MapNamesTemplate;
             dynamicEcos = parameters.DynamicFireRegions;
-            string logFileName = parameters.LogFileName;
-            string summaryLogFileName = parameters.SummaryLogFileName;
 
             summaryFireRegionEventCount = new int[FireRegions.Dataset.Count];
-            Event.Initialize(parameters.FireDamages);
+            FireEvent.Initialize(parameters.FireDamages);
 
-            modelCore.UI.WriteLine("   Opening and Initializing Fire log files \"{0}\" and \"{1}\"...", parameters.LogFileName, parameters.SummaryLogFileName);
             SpeciesData.Initialize(parameters);
 
             List<string> colnames = new List<string>();
@@ -79,8 +69,12 @@ namespace Landis.Extension.OriginalFire
             {
                 colnames.Add(fireregion.Name);
             }
+            SiteVars.Initialize();
+            FireRegions.ReadMap(parameters.InitialFireRegions);
+
+            ModelCore.UI.WriteLine("   Opening and Initializing Fire log files \"{0}\" and \"{1}\"...", parameters.FireEventLogFileName, parameters.FireSummaryLogFileName);
             ExtensionMetadata.ColumnNames = colnames;
-            MetadataHandler.InitializeMetadata(Timestep, mapNameTemplate, logFileName, summaryLogFileName);
+            MetadataHandler.InitializeMetadata(Timestep, mapNameTemplate, parameters.FireEventLogFileName, parameters.FireSummaryLogFileName);
         }
 
         ///<summary>
@@ -90,7 +84,7 @@ namespace Landis.Extension.OriginalFire
         {
             PlugIn.ModelCore.UI.WriteLine("   Processing landscape for Fire events ...");
 
-            SiteVars.InitializeDisturbances(Timestep);
+            //SiteVars.InitializeDisturbances(Timestep);
             SiteVars.Event.SiteValues = null;
             SiteVars.Severity.ActiveSiteValues = 0;
             SiteVars.Disturbed.ActiveSiteValues = false;
@@ -98,7 +92,7 @@ namespace Landis.Extension.OriginalFire
             // Update the FireRegions Map as necessary:
             foreach(IDynamicFireRegion dyneco in dynamicEcos)
             {
-                 if(dyneco.Year == PlugIn.modelCore.CurrentTime)
+                 if(dyneco.Year == PlugIn.ModelCore.CurrentTime)
                  {
                      PlugIn.ModelCore.UI.WriteLine("   Reading in new Fire Regions Map {0}.", dyneco.MapName);
                     FireRegions.ReadMap(dyneco.MapName);
@@ -113,21 +107,21 @@ namespace Landis.Extension.OriginalFire
             summaryTotalSites = 0;
             summaryEventCount = 0;
 
-            foreach (ActiveSite site in PlugIn.modelCore.Landscape) {
+            foreach (ActiveSite site in PlugIn.ModelCore.Landscape) {
 
-                Event FireEvent = Event.Initiate(site, PlugIn.modelCore.CurrentTime, Timestep);
+                FireEvent FireEvent = FireEvent.Initiate(site, PlugIn.ModelCore.CurrentTime, Timestep);
                 if (FireEvent != null) {
-                    LogEvent(PlugIn.modelCore.CurrentTime, FireEvent);
+                    LogEvent(PlugIn.ModelCore.CurrentTime, FireEvent);
                     summaryEventCount++;
                 }
             }
 
             //  Write Fire severity map
-            string path = MapNames.ReplaceTemplateVars(mapNameTemplate, PlugIn.modelCore.CurrentTime);
-            using (IOutputRaster<BytePixel> outputRaster = modelCore.CreateRaster<BytePixel>(path, modelCore.Landscape.Dimensions))
+            string path = MapNames.ReplaceTemplateVars(mapNameTemplate, PlugIn.ModelCore.CurrentTime);
+            using (IOutputRaster<BytePixel> outputRaster = ModelCore.CreateRaster<BytePixel>(path, ModelCore.Landscape.Dimensions))
             {
                 BytePixel pixel = outputRaster.BufferPixel;
-                foreach (Site site in modelCore.Landscape.AllSites) {
+                foreach (Site site in ModelCore.Landscape.AllSites) {
                     if (site.IsActive) {
                         if (SiteVars.Disturbed[site])
                             pixel.MapCode.Value = (byte)(SiteVars.Severity[site] + 1);
@@ -142,20 +136,20 @@ namespace Landis.Extension.OriginalFire
                 }
             }
 
-            WriteSummaryLog(PlugIn.modelCore.CurrentTime);
+            WriteSummaryLog(PlugIn.ModelCore.CurrentTime);
 
         }
 
         //---------------------------------------------------------------------
 
         private void LogEvent(int   currentTime,
-                              Event FireEvent)
+                              FireEvent FireEvent)
         {
             int totalSitesInEvent = 0;
             if (FireEvent.Severity > 0)
             {
-                eventLog.Clear();
-                EventsLog el = new EventsLog();
+                FireEventLog.Clear();
+                FireEventsLog el = new FireEventsLog();
                 el.Time = currentTime;
                 el.Row = FireEvent.StartLocation.Row;
                 el.Column = FireEvent.StartLocation.Column;
@@ -172,18 +166,18 @@ namespace Landis.Extension.OriginalFire
                     totalSitesInEvent += FireEvent.SitesInEvent[fireregion.Index];
                     summaryFireRegionEventCount[fireregion.Index] += FireEvent.SitesInEvent[fireregion.Index];
                 }
-                el.SitesEvent = new double[fireSites.Length];
+                el.SitesEventByEcoregion = new double[fireSites.Length];
                 i = 0;
                 while(i < fireSites.Length)
                 {
-                    el.SitesEvent[i] = fireSites[i];
+                    el.SitesEventByEcoregion[i] = fireSites[i];
                     ++i;
                 }
 
                 summaryTotalSites += totalSitesInEvent;
                 el.BurnedSites = totalSitesInEvent;
-                eventLog.AddObject(el);
-                eventLog.WriteToFile();
+                FireEventLog.AddObject(el);
+                FireEventLog.WriteToFile();
             }
         }
 
@@ -191,7 +185,7 @@ namespace Landis.Extension.OriginalFire
 
         private void WriteSummaryLog(int currentTime)
         {
-            summaryLog.Clear();
+            FireSummaryLog.Clear();
             SummaryLog sl = new SummaryLog();
             sl.Time = currentTime;
             sl.TotalSitesBurned = summaryTotalSites;
@@ -209,8 +203,8 @@ namespace Landis.Extension.OriginalFire
                 sl.EcoCounts_[i] = summaryFireCount[i];
             }
 
-            summaryLog.AddObject(sl);
-            summaryLog.WriteToFile();
+            FireSummaryLog.AddObject(sl);
+            FireSummaryLog.WriteToFile();
         }
     }
 }
