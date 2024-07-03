@@ -286,7 +286,7 @@ namespace Landis.Extension.OriginalFire
                                 continue;
                             if (sitesToConsider.Contains(neighbor))
                                 continue;
-                            if (PlugIn.ModelCore.GenerateUniform() <= ComputeFireInitSpreadProb((ActiveSite)neighbor, currentTime)) //(neighbor as ActiveSite, currentTime))
+                            if (PlugIn.ModelCore.GenerateUniform() <= ComputeFireInitSpreadProb((ActiveSite)neighbor, currentTime)) 
                                 sitesToConsider.Enqueue(neighbor);
                         }
                     }
