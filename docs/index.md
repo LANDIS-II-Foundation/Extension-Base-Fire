@@ -21,8 +21,6 @@ The latest version can be downloaded [here](https://github.com/LANDIS-II-Foundat
 
 # Example Files
 
-LANDIS-II requires a global parameter file for your scenario, and separate parameter files for each extension.
-
 Example files are [here](https://downgit.github.io/#/home?url=https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/testings/Core8.0-OriginalFire5.0).
 
 # Citation
