@@ -10,7 +10,7 @@ Original Fire generates wildfires that are dependent upon fire region (or 'landt
 
 # Requirements
 
-To use Base Fire, you need:
+To use Original Fire, you need:
 
 - The [LANDIS-II model v8.0](http://www.landis-ii.org/install) installed on your computer.
 - Example files (see below)
