@@ -1,6 +1,6 @@
 ﻿using Landis.Library.Metadata;
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     public class SummaryLog
     {
@@ -14,7 +14,7 @@ namespace Landis.Extension.BaseFire
         [DataFieldAttribute(Desc = "Event Count")]
         public int NumberFires { set; get; }
 
-        [DataFieldAttribute(Desc = "Fire Region Event Count by Ecoregion", ColumnList = true)]
-        public double[] EcoCounts_ { set; get; }
+        //[DataFieldAttribute(Desc = "Fire Region Event Count by Ecoregion", ColumnList = true)]
+        //public double[] EcoCounts_ { set; get; }
     }
 }

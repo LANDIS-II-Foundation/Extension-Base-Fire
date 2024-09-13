@@ -2,9 +2,11 @@
 
 using Landis.Utilities;
 using System.Collections.Generic;
-using System.Text;
+using System.Data;
+using Landis.Core;
 
-namespace Landis.Extension.BaseFire
+
+namespace Landis.Extension.OriginalFire
 {
     /// <summary>
     /// A parser that reads the plug-in's parameters from text input.
@@ -12,6 +14,9 @@ namespace Landis.Extension.BaseFire
     public class InputParameterParser
         : TextParser<IInputParameters>
     {
+        private ISpeciesDataset speciesDataset;
+        private Dictionary<string, int> speciesLineNums;
+        private InputVar<string> speciesName;
 
         //---------------------------------------------------------------------
         public override string LandisDataValue
@@ -24,29 +29,44 @@ namespace Landis.Extension.BaseFire
         public InputParameterParser()
         {
             // FIXME: Hack to ensure that Percentage is registered with InputValues
-            Landis.Utilities.Percentage p = new Landis.Utilities.Percentage();
+            Percentage p = new Landis.Utilities.Percentage();
+            this.speciesDataset = PlugIn.ModelCore.Species;
+            this.speciesLineNums = new Dictionary<string, int>();
+            this.speciesName = new InputVar<string>("Species");
+
         }
 
         //---------------------------------------------------------------------
 
         protected override IInputParameters Parse()
         {
-            InputVar<string> landisData = new InputVar<string>("LandisData");
-            ReadVar(landisData);
-            if (landisData.Value.Actual != PlugIn.ExtensionName)
-                throw new InputValueException(landisData.Value.String, "The value is not \"{0}\"", PlugIn.ExtensionName);
+            ReadLandisDataVar();
 
-            InputParameters parameters = new InputParameters();
+            InputParameters parameters = new InputParameters(PlugIn.ModelCore.Species);
 
             InputVar<int> timestep = new InputVar<int>("Timestep");
             ReadVar(timestep);
             parameters.Timestep = timestep.Value;
 
+            //-------------------------
+            //  Read Species Parameters table
+            PlugIn.ModelCore.UI.WriteLine("   Begin parsing SPECIES table.");
+
+            InputVar<string> csv = new InputVar<string>("Species_CSV_File");
+            ReadVar(csv);
+
+            CSVParser speciesParser = new CSVParser();
+            DataTable speciesTable = speciesParser.ParseToDataTable(csv.Value);
+            foreach (DataRow row in speciesTable.Rows)
+            {
+                ISpecies species = ReadSpecies(System.Convert.ToString(row["SpeciesCode"]));
+                parameters.FireTolerance[species] = System.Convert.ToInt32(row["FireTolerance"]);
+            }
+
             //----------------------------------------------------------
             // First, read table of additional parameters for ecoregions
             PlugIn.ModelCore.UI.WriteLine("   Loading FireRegion data...");
             
-            //IEditableFireRegionDataset dataset = new EditableFireRegionDataset();
             List<IFireRegion> dataset = new List<IFireRegion>(0);
             
             Dictionary <string, int> nameLineNumbers = new Dictionary<string, int>();
@@ -127,7 +147,7 @@ namespace Landis.Extension.BaseFire
             
             InputVar<string> ecoregionsMap = new InputVar<string>("InitialFireRegionsMap");
             ReadVar(ecoregionsMap);
-            FireRegions.ReadMap(ecoregionsMap.Value);
+            parameters.InitialFireRegions = ecoregionsMap.Value;
 
             //----------------------------------------------------------
             // Read in the table of dynamic ecoregions:
@@ -136,7 +156,6 @@ namespace Landis.Extension.BaseFire
             
             if (ReadOptionalName(DynamicFireRegionTable)) 
             {
-            //ReadName(DynamicFireRegionTable);
 
                 InputVar<string> mapName = new InputVar<string>("Dynamic Map Name");
                 InputVar<int> year = new InputVar<int>("Year to read in new FireRegion Map");
@@ -334,11 +353,11 @@ namespace Landis.Extension.BaseFire
 
             InputVar<string> logFile = new InputVar<string>("LogFile");
             ReadVar(logFile);
-            parameters.LogFileName = logFile.Value;
+            parameters.FireEventLogFileName = logFile.Value;
 
             InputVar<string> summaryLogFile = new InputVar<string>("SummaryLogFile");
             ReadVar(summaryLogFile);
-            parameters.SummaryLogFileName = summaryLogFile.Value;
+            parameters.FireSummaryLogFileName = summaryLogFile.Value;
 
             CheckNoDataAfter(string.Format("the {0} parameter", summaryLogFile.Name));
 
@@ -375,5 +394,23 @@ namespace Landis.Extension.BaseFire
 
             return ecoregion;
         }
+        //---------------------------------------------------------------------
+        private ISpecies ReadSpecies(string speciesName)
+        {
+            ISpecies species = speciesDataset[speciesName];
+            if (species == null)
+                throw new InputValueException(speciesName,
+                                              "{0} is not a species name.",
+                                              speciesName);
+            int lineNumber;
+            if (speciesLineNums.TryGetValue(species.Name, out lineNumber))
+                throw new InputValueException(speciesName,
+                                              "The species {0} was previously used on line {1}",
+                                              speciesName, lineNumber);
+            else
+                speciesLineNums[species.Name] = LineNumber;
+            return species;
+        }
+
     }
 }

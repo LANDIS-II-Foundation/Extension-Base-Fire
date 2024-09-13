@@ -3,7 +3,7 @@
 using Landis.Utilities;
 
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     /// <summary>
     /// Fire Curve parameters for an ecoregion.
@@ -60,7 +60,7 @@ namespace Landis.Extension.BaseFire
 }
 
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     public class FuelCurve
         : IFuelCurve

@@ -2,9 +2,10 @@
 
 using Landis.Utilities;
 using System.Collections.Generic;
+using Landis.Core;
 
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     /// <summary>
     /// Parameters for the plug-in.
@@ -18,6 +19,9 @@ namespace Landis.Extension.BaseFire
         {
             get;set;
         }
+
+        Landis.Library.Parameters.Species.AuxParm<int> FireTolerance { get; }
+        string InitialFireRegions { get; set; }
 
         //---------------------------------------------------------------------
         /// <summary>
@@ -43,7 +47,7 @@ namespace Landis.Extension.BaseFire
         /// <summary>
         /// Name of log file.
         /// </summary>
-        string LogFileName
+        string FireEventLogFileName
         {
             get;set;
         }
@@ -52,7 +56,7 @@ namespace Landis.Extension.BaseFire
         /// <summary>
         /// Name of Summary log file.
         /// </summary>
-        string SummaryLogFileName
+        string FireSummaryLogFileName
         {
             get;set;
         }
@@ -61,12 +65,12 @@ namespace Landis.Extension.BaseFire
         {
             get;
         }
-        
+
     }
 }
 
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     /// <summary>
     /// Parameters for the plug-in.
@@ -75,11 +79,10 @@ namespace Landis.Extension.BaseFire
         : IInputParameters
     {
         private int timestep;
-        private List<IDamageTable> damages;
+        private ISpeciesDataset speciesDataset;
         private string mapNamesTemplate;
         private string logFileName;
         private string summaryLogFileName;
-        private List<IDynamicFireRegion> dynamicFireRegions;
 
         //---------------------------------------------------------------------
 
@@ -98,16 +101,14 @@ namespace Landis.Extension.BaseFire
             }
         }
 
+        public Landis.Library.Parameters.Species.AuxParm<int> FireTolerance { get; set; }
+
         //---------------------------------------------------------------------
         /// <summary>
         /// Definitions of Fire severities.
         /// </summary>
-        public List<IDamageTable> FireDamages
-        {
-            get {
-                return damages;
-            }
-        }
+        public List<IDamageTable> FireDamages { get; }
+        public string InitialFireRegions { get; set; }
 
         //---------------------------------------------------------------------
 
@@ -132,7 +133,7 @@ namespace Landis.Extension.BaseFire
         /// <summary>
         /// Name of log file.
         /// </summary>
-        public string LogFileName
+        public string FireEventLogFileName
         {
             get {
                 return logFileName;
@@ -149,7 +150,7 @@ namespace Landis.Extension.BaseFire
         /// <summary>
         /// Name of log file.
         /// </summary>
-        public string SummaryLogFileName
+        public string FireSummaryLogFileName
         {
             get {
                 return summaryLogFileName;
@@ -162,19 +163,16 @@ namespace Landis.Extension.BaseFire
             }
         }
         //---------------------------------------------------------------------
-        
-        public List<IDynamicFireRegion> DynamicFireRegions
-        {
-            get {
-                return dynamicFireRegions;
-            }
-        }
+
+        public List<IDynamicFireRegion> DynamicFireRegions { get; }
         //---------------------------------------------------------------------
 
-        public InputParameters()
+        public InputParameters(ISpeciesDataset speciesDataset)
         {
-            dynamicFireRegions = new List<IDynamicFireRegion>(0);
-            damages = new List<IDamageTable>(0);
+            this.speciesDataset = speciesDataset;
+            DynamicFireRegions = new List<IDynamicFireRegion>(0);
+            FireDamages = new List<IDamageTable>(0);
+            FireTolerance = new Landis.Library.Parameters.Species.AuxParm<int>(speciesDataset);
         }
     }
 }

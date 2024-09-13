@@ -2,7 +2,7 @@
 
 using Landis.Utilities;
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     /// <summary>
     /// Definition of a Fire Damage Class.
@@ -28,7 +28,7 @@ namespace Landis.Extension.BaseFire
 }
 
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     /// <summary>
     /// Definition of a Fire Damage class.

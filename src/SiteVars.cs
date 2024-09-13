@@ -2,15 +2,15 @@
 
 using Landis.Core;
 using Landis.SpatialModeling;
-using Landis.Library.AgeOnlyCohorts;
+using Landis.Library.UniversalCohorts;
 
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     public static class SiteVars
     {
         private static ISiteVar<IFireRegion> ecoregions;
-        private static ISiteVar<Event> eventVar;
+        private static ISiteVar<FireEvent> eventVar;
         private static ISiteVar<int> timeOfLastEvent;
         private static ISiteVar<int> timeOfLastWind;
         private static ISiteVar<byte> severity;
@@ -22,29 +22,27 @@ namespace Landis.Extension.BaseFire
         public static void Initialize()
         {
             ecoregions     = PlugIn.ModelCore.Landscape.NewSiteVar<IFireRegion>();
-            eventVar        = PlugIn.ModelCore.Landscape.NewSiteVar<Event>(InactiveSiteMode.DistinctValues);
+            eventVar        = PlugIn.ModelCore.Landscape.NewSiteVar<FireEvent>(InactiveSiteMode.DistinctValues);
             timeOfLastEvent = PlugIn.ModelCore.Landscape.NewSiteVar<int>();
             severity = PlugIn.ModelCore.Landscape.NewSiteVar<byte>();
             disturbed = PlugIn.ModelCore.Landscape.NewSiteVar<bool>();
 
-            cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.AgeCohorts");
+            cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.UniversalCohorts");
 
             PlugIn.ModelCore.RegisterSiteVar(SiteVars.Severity, "Fire.Severity");
             PlugIn.ModelCore.RegisterSiteVar(SiteVars.TimeOfLastFire, "Fire.TimeOfLastEvent");
+            timeOfLastWind = PlugIn.ModelCore.GetSiteVar<int>("Wind.TimeOfLastEvent");
 
             foreach (ActiveSite site in PlugIn.ModelCore.Landscape)
             {
                 ushort maxAge = GetMaxAge(site);
-                //PlugIn.ModelCore.Log.WriteLine("maxAge = {0}.", maxAge);
-
                 timeOfLastEvent[site] = PlugIn.ModelCore.StartTime - maxAge;
             }
         }
 
-        public static void InitializeDisturbances(int timestep)
-        {
-            timeOfLastWind = PlugIn.ModelCore.GetSiteVar<int>("Wind.TimeOfLastEvent");
-        }
+        //public static void InitializeDisturbances(int timestep)
+        //{
+        //}
 
         //---------------------------------------------------------------------
 
@@ -57,7 +55,7 @@ namespace Landis.Extension.BaseFire
 
         //---------------------------------------------------------------------
 
-        public static ISiteVar<Event> Event
+        public static ISiteVar<FireEvent> Event
         {
             get {
                 return eventVar;
@@ -120,8 +118,8 @@ namespace Landis.Extension.BaseFire
             {
                 foreach (ICohort cohort in speciesCohorts)
                 {
-                        if (cohort.Age > max)
-                            max = cohort.Age;
+                        if (cohort.Data.Age > max)
+                            max = cohort.Data.Age;
                 }
             }
             return max;

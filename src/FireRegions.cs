@@ -5,7 +5,7 @@ using System.IO;
 using System.Collections.Generic;
 
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     public class FireRegions
     {

@@ -1,8 +1,8 @@
 ﻿using Landis.Library.Metadata;
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
-    public class EventsLog
+    public class FireEventsLog
     {
 
         [DataFieldAttribute(Unit = FieldUnits.Year, Desc = "Time")]
@@ -23,8 +23,8 @@ namespace Landis.Extension.BaseFire
         [DataFieldAttribute(Desc = "Mean Severity")]
         public double Severity { set; get; }
 
-        [DataFieldAttribute(Desc = "Sites in Fire Event by Ecoregion", ColumnList = true)]
-        public double[] SitesEvent { set; get; }
+        //[DataFieldAttribute(Desc = "Sites in Fire Event by Ecoregion", ColumnList = true)]
+        //public double[] SitesEventByEcoregion { set; get; }
 
         [DataFieldAttribute(Desc = "Total Burned Sites")]
         public int BurnedSites { set; get; }

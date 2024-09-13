@@ -1,29 +1,27 @@
-# What is the Base Fire Extension?
+# What is the Original Fire Extension?
 
-Base Fire generates wildfires that are dependent upon fire region (or 'landtype') specific inputs. Base Fire follows the principles of older LANDIS versions (v3.6 and earlier) whereby fire patches are put on the landscape following a log-normal size distribution and fire severity is a function of time-since-last-fire. 
+Original Fire generates wildfires that are dependent upon fire region (or 'landtype') specific inputs. Original Fire follows the principles of older LANDIS versions (v3.6 and earlier) whereby fire patches are put on the landscape following a log-normal size distribution and fire severity is a function of time-since-last-fire. 
 
 # Release Notes
 
-- Latest official release: Version 4.0 — September 2018
-- [View User Guide](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/docs/LANDIS-II%20Base%20Fire%20v4.0%20User%20Guide.pdf).
+- Latest official release: Version 5.0 — August 2024
+- [View User Guide](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/docs/LANDIS-II%20Original%20Fire%20v5.0%20User%20Guide.pdf).
 - Full release details found in the User Guide and on GitHub.
 
 # Requirements
 
 To use Base Fire, you need:
 
-- The [LANDIS-II model v7.0](http://www.landis-ii.org/install) installed on your computer.
+- The [LANDIS-II model v8.0](http://www.landis-ii.org/install) installed on your computer.
 - Example files (see below)
 
-# Download
+# Download the Extension
 
-Version 4.0 can be downloaded [here](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/deploy/installer/LANDIS-II-V7%20Base%20Fire%204.0-setup.exe). To install it on your computer, launch the installer.
+The latest version can be downloaded [here](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/deploy/installer/LANDIS-II-V8%20Base%20Fire%205.0-setup.exe). (Look for the download icon in the upper right corner.)  Launch the installer.
 
 # Example Files
 
-LANDIS-II requires a global parameter file for your scenario, and separate parameter files for each extension.
-
-Example files are [here](https://downgit.github.io/#/home?url=https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/testings/Core7.0-BaseFire4.0).
+Example files are [here](https://downgit.github.io/#/home?url=https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/testings/Core8.0-OriginalFire5.0).
 
 # Citation
 

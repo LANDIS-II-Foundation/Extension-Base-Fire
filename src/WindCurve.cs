@@ -2,7 +2,7 @@
 
 using Landis.Utilities;
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     /// <summary>
     /// Wind Curve parameters for an ecoregion.
@@ -59,7 +59,7 @@ namespace Landis.Extension.BaseFire
 }
 
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     public class WindCurve
         : IWindCurve

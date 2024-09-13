@@ -5,7 +5,7 @@ using Landis.SpatialModeling;
 using Landis.Utilities;
 using System.Collections.Generic;
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     /// <summary>
     /// The parameters for an ecoregion.
@@ -26,7 +26,7 @@ namespace Landis.Extension.BaseFire
     }
 }
 
-namespace Landis.Extension.BaseFire
+namespace Landis.Extension.OriginalFire
 {
     public class FireRegion
         : IFireRegion
