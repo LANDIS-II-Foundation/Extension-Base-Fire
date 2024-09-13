@@ -17,7 +17,7 @@ To use Base Fire, you need:
 
 # Download the Extension
 
-The latest version can be downloaded [here](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/deploy/installer/LANDIS-II-V8%20Base%20Fire%205.0-setup.exe). (Look for the download icon in the upper right corner.)  Launch the installer.
+The latest version can be downloaded [here](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/deploy/installer/LANDIS-II-V8%20Original%20Fire%205.0-setup.exe). (Look for the download icon in the upper right corner.)  Launch the installer.
 
 # Example Files
 
