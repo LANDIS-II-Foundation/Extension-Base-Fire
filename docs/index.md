@@ -1,6 +1,6 @@
 # What is the Original Fire Extension?
 
-Original Fire generates wildfires that are dependent upon fire region (or 'landtype') specific inputs. Original Fire follows the principles of older LANDIS versions (v3.6 and earlier) whereby fire patches are put on the landscape following a log-normal size distribution and fire severity is a function of time-since-last-fire. 
+Original Fire generates wildfires that are dependent upon fire region specific inputs. Original Fire follows the principles of older LANDIS versions (v3.6 and earlier) whereby fire patches are put on the landscape following a log-normal size distribution and fire severity is a function of time-since-last-fire. 
 
 # Release Notes
 
@@ -15,7 +15,7 @@ To use Original Fire, you need:
 - The [LANDIS-II model v8.0](http://www.landis-ii.org/install) installed on your computer.
 - Example files (see below)
 
-# Download the Extension
+# Download and Install the Extension
 
 The latest version can be downloaded [here](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/deploy/installer/LANDIS-II-V8%20Original%20Fire%205.0-setup.exe). (Look for the download icon in the upper right corner.)  Launch the installer.
 

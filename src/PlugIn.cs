@@ -160,13 +160,13 @@ namespace Landis.Extension.OriginalFire
                 //int[] fireSites = new int[FireRegions.Dataset.Count];
                 //int i = 0;
 
-                //foreach (IFireRegion fireregion in FireRegions.Dataset)
-                //{
-                //    fireSites[i] = FireEvent.SitesInEvent[fireregion.Index];
-                //    i = i + 1;
-                //    totalSitesInEvent += FireEvent.SitesInEvent[fireregion.Index];
-                //    summaryFireRegionEventCount[fireregion.Index] += FireEvent.SitesInEvent[fireregion.Index];
-                //}
+                foreach (IFireRegion fireregion in FireRegions.Dataset)
+                {
+                    //fireSites[i] = FireEvent.SitesInEvent[fireregion.Index];
+                    //i = i + 1;
+                    totalSitesInEvent += FireEvent.SitesInEvent[fireregion.Index];
+                    summaryFireRegionEventCount[fireregion.Index] += FireEvent.SitesInEvent[fireregion.Index];
+                }
                 //el.SitesEventByEcoregion = new double[fireSites.Length];
                 //i = 0;
                 //while(i < fireSites.Length)
