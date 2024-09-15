@@ -15,7 +15,7 @@ namespace Landis.Extension.OriginalFire
         private static ISiteVar<int> timeOfLastWind;
         private static ISiteVar<byte> severity;
         private static ISiteVar<bool> disturbed;
-        private static ISiteVar<ISiteCohorts> cohorts;
+        private static ISiteVar<SiteCohorts> cohorts;
 
         //---------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ namespace Landis.Extension.OriginalFire
             severity = PlugIn.ModelCore.Landscape.NewSiteVar<byte>();
             disturbed = PlugIn.ModelCore.Landscape.NewSiteVar<bool>();
 
-            cohorts = PlugIn.ModelCore.GetSiteVar<ISiteCohorts>("Succession.UniversalCohorts");
+            cohorts = PlugIn.ModelCore.GetSiteVar<SiteCohorts>("Succession.UniversalCohorts");
 
             PlugIn.ModelCore.RegisterSiteVar(SiteVars.Severity, "Fire.Severity");
             PlugIn.ModelCore.RegisterSiteVar(SiteVars.TimeOfLastFire, "Fire.TimeOfLastEvent");
@@ -98,7 +98,7 @@ namespace Landis.Extension.OriginalFire
             }
         }
 
-        public static ISiteVar<ISiteCohorts> Cohorts
+        public static ISiteVar<SiteCohorts> Cohorts
         {
             get
             {
