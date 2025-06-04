@@ -4,8 +4,8 @@
 		<NeutralLanguage>English</NeutralLanguage>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<AssemblyVersion>5.0.0.0</AssemblyVersion>
-		<FileVersion>5.0.0.0</FileVersion>
+		<AssemblyVersion>5.0.1</AssemblyVersion>
+		<FileVersion>5.0.1</FileVersion>
 		<RootNamespace>Landis.Extension.OriginalFire</RootNamespace>
     <AssemblyName>Landis.Extension.OriginalFire-v5</AssemblyName>
     <AssemblyTitle>Landis.Extension.OriginalFire-v5</AssemblyTitle>
@@ -17,6 +17,7 @@
     <Authors>LANDIS-II Foundation</Authors>
     <Company>LANDIS-II Foundation</Company>
     <Description>Extension that uses the original fire algorithms</Description>
+    <Version>5.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
