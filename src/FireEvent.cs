@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace Landis.Extension.OriginalFire
 {
     public class FireEvent
-        : IDisturbance
+        : ICohortDisturbance
     {
         private static RelativeLocation[] neighborhood;
         private static List<IDamageTable> damages;
@@ -405,7 +405,7 @@ namespace Landis.Extension.OriginalFire
         private int Damage(ActiveSite site)
         {
             int previousCohortsKilled = this.cohortsKilled;
-            SiteVars.Cohorts[site].ReduceOrKillCohorts(this);
+            SiteVars.Cohorts[site].RemoveMarkedCohorts(this);
             return this.cohortsKilled - previousCohortsKilled;
         }
 
@@ -445,6 +445,11 @@ namespace Landis.Extension.OriginalFire
                 return cohort.Data.Biomass;
             }
             return 0;
+        }
+
+        public bool MarkCohortForDeath(ICohort cohort)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
