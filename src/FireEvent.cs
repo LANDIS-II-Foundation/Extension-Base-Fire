@@ -413,8 +413,7 @@ namespace Landis.Extension.OriginalFire
 
         //  A filter to determine which cohorts are removed.
 
-        //bool ICohortDisturbance.MarkCohortForDeath(ICohort cohort) 
-        int IDisturbance.ReduceOrKillMarkedCohort(ICohort cohort)
+        double IDisturbance.ReduceOrKillMarkedCohort(ICohort cohort)
         {
             bool killCohort = false;
 
@@ -442,7 +441,7 @@ namespace Landis.Extension.OriginalFire
 
             if (killCohort) {
                 this.cohortsKilled++;
-                return cohort.Data.Biomass;
+                return 1.0; // cohort.Data.Biomass;
             }
             return 0;
         }
