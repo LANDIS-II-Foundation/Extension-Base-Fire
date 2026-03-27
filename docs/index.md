@@ -4,8 +4,8 @@ Original Fire generates wildfires that are dependent upon fire region specific i
 
 # Release Notes
 
-- Latest official release: Version 5.0 — August 2024
-- [View User Guide](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/docs/LANDIS-II%20Original%20Fire%20v5.0%20User%20Guide.pdf).
+- Latest official release: Version 5.1 — March 2026
+- [View User Guide](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/docs/LANDIS-II%20Original%20Fire%20v5%20User%20Guide.pdf).
 - Full release details found in the User Guide and on GitHub.
 
 # Requirements
@@ -17,7 +17,7 @@ To use Original Fire, you need:
 
 # Download and Install the Extension
 
-The latest version can be downloaded [here](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/deploy/installer/LANDIS-II-V8%20Original%20Fire%205.0-setup.exe). (Look for the download icon in the upper right corner.)  Launch the installer.
+The latest version can be downloaded [here](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/deploy/installer/LANDIS-II-V8%20Original%20Fire%205.1-setup.exe). (Look for the download icon in the upper right corner.)  Launch the installer.
 
 # Example Files
 
@@ -38,4 +38,4 @@ If you come across any issue or suspected bug, please post about it in the [issu
 
 [The LANDIS-II Foundation](http://www.landis-ii.org)
 
-Mail : HeH@missouri.edu
+
