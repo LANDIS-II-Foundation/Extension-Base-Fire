@@ -4,12 +4,12 @@
 		<NeutralLanguage>English</NeutralLanguage>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<AssemblyVersion>5.0.0.0</AssemblyVersion>
-		<FileVersion>5.0.0.0</FileVersion>
 		<RootNamespace>Landis.Extension.OriginalFire</RootNamespace>
     <AssemblyName>Landis.Extension.OriginalFire-v5</AssemblyName>
     <AssemblyTitle>Landis.Extension.OriginalFire-v5</AssemblyTitle>
-    <PackageLicenseUrl>https://github.com/LANDIS-II-Foundation/Extension-Original-Fire/blob/master/LICENSE</PackageLicenseUrl>
+    <AssemblyVersion>5.1.0.0</AssemblyVersion>
+    <FileVersion>5.1.0.0</FileVersion>
+	<PackageLicenseUrl>https://github.com/LANDIS-II-Foundation/Extension-Original-Fire/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>http://www.landis-ii.org</PackageProjectUrl>
     <RepositoryUrl>https://github.com/LANDIS-II-Foundation/Extension-Original-Fire</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -24,8 +24,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Reference Include="Landis.Library.UniversalCohorts-v1">
-      <HintPath>lib\Landis.Library.UniversalCohorts-v1.dll</HintPath>
+    <Reference Include="Landis.Library.UniversalCohorts-v2">
+      <HintPath>lib\Landis.Library.UniversalCohorts-v2.dll</HintPath>
     </Reference>
     <Reference Include="Landis.Library.Metadata-v2">
       <HintPath>lib\Landis.Library.Metadata-v2.dll</HintPath>
