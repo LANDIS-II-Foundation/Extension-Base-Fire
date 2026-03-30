@@ -4,7 +4,7 @@ Original Fire generates wildfires that are dependent upon fire region specific i
 
 # Release Notes
 
-- Latest official release: Version 5.1 — March 2026
+- Latest official release: Version 5.1 — April 2026
 - [View User Guide](https://github.com/LANDIS-II-Foundation/Extension-Base-Fire/blob/master/docs/LANDIS-II%20Original%20Fire%20v5%20User%20Guide.pdf).
 - Full release details found in the User Guide and on GitHub.
 
